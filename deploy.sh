@@ -38,17 +38,17 @@ echo "Waiting for service..."
 sleep 10
 
 echo "Testing deployment..."
-curl -f http://localhost:8080/api || echo "⚠️  Service not responding yet"
+curl -f http://localhost:8090/api || echo "⚠️  Service not responding yet"
 
 echo "✅ Deployment complete!"
-echo "🌐 Service available on: http://46.224.44.77:8080"
-echo "📚 API docs: http://46.224.44.77:8080/docs"
+echo "🌐 Service available on: http://46.224.44.77:8090"
+echo "📚 API docs: http://46.224.44.77:8090/docs"
 echo "🔑 Admin secret: $ADMIN_SECRET"
 EOF
 
 echo "🎉 HD Platform deployed successfully!"
 echo ""
 echo "Next steps:"
-echo "1. Test: http://46.224.44.77:8080"
+echo "1. Test: http://46.224.44.77:8090"
 echo "2. Setup nginx reverse proxy (optional)"
 echo "3. Configure custom domain + SSL"

@@ -12,7 +12,7 @@ services:
       - HD_ADMIN_SECRET=${HD_ADMIN_SECRET:-changeme}
       - DataDirectory=/app/data
     ports:
-      - "8080:5000"
+      - "8090:5000"  # Changed from 8080 to 8090 to avoid conflict with Traefik
     volumes:
       - hd_platform_data:/app/data
     networks:

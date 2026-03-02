@@ -24,7 +24,7 @@ Professional Human Design Chart API with commercial features.
 - **OpenClaw Server (91.98.95.203):** HD Chart API calculation engine (internal)
 - **AH Server (46.224.44.77):** Production deployment target (public)
 - **Docker:** Container deployment with nginx reverse proxy
-- **Ports:** 8080 on AH server → 5000 in container
+- **Ports:** 8090 on AH server → 5000 in container
 
 ## Quick Start
 
@@ -43,7 +43,7 @@ dotnet run
 cd docker
 docker-compose build
 docker-compose up -d
-# → http://localhost:8080
+# → http://localhost:8090
 ```
 
 ### Deploy to AH Server

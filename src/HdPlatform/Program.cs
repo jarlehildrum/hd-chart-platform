@@ -2,14 +2,24 @@ using HdPlatform.Models;
 using HdPlatform.Services;
 using HdPlatform.Middleware;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Core Services - now local instead of HTTP client
+// Database
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
+    Environment.GetEnvironmentVariable("DATABASE_URL") ??
+    "Host=localhost;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123";
+
+builder.Services.AddDbContext<HdPlatformContext>(options =>
+    options.UseNpgsql(connectionString));
+
+// Core Services - now using database instead of JSON
+builder.Services.AddScoped<DatabaseApiKeyService>();
+builder.Services.AddScoped<StripeService>();
 builder.Services.AddSingleton<HumanDesignService>();
 builder.Services.AddSingleton<GeocodingService>();
 builder.Services.AddSingleton<ChartImageService>();
-builder.Services.AddSingleton<ApiKeyService>();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -26,7 +36,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "Human Design Chart API",
         Version = "v1",
-        Description = "Professional Human Design chart calculations via REST API. Built by a certified BG5 consultant.",
+        Description = "Professional Human Design chart calculations with Stripe billing. Built by a certified BG5 consultant.",
         Contact = new OpenApiContact { Name = "HD Chart API", Email = "hello@hdchartapi.com" }
     });
     c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
@@ -44,6 +54,21 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+// Auto-migrate database on startup
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<HdPlatformContext>();
+    try
+    {
+        await context.Database.MigrateAsync();
+        app.Logger.LogInformation("Database migration completed");
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Database migration failed");
+    }
+}
+
 // Middleware pipeline
 app.UseCors();
 app.UseSwagger();
@@ -52,7 +77,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "HD Chart API v1");
     c.RoutePrefix = "docs";
 });
-app.UseMiddleware<ApiKeyMiddleware>();
+app.UseMiddleware<DatabaseApiKeyMiddleware>();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -65,22 +90,87 @@ var adminSecret = builder.Configuration.GetValue<string>("AdminSecret") ?? Envir
 app.MapGet("/api", () => Results.Ok(new
 {
     name = "Human Design Chart API",
-    version = "v1",
-    description = "Professional HD chart calculations",
+    version = "v2.0",
+    description = "Professional HD chart calculations with Stripe billing",
     docs = "/docs",
     status = "operational",
-    built_by = "Certified BG5 consultant"
+    built_by = "Certified BG5 consultant",
+    billing_enabled = true
 })).WithTags("Info").WithDescription("API information and status");
 
 app.MapGet("/api/health", () => Results.Ok(new 
 { 
     status = "healthy", 
     timestamp = DateTime.UtcNow,
-    uptime = Environment.TickCount64 / 1000.0
+    uptime = Environment.TickCount64 / 1000.0,
+    database = "postgresql",
+    billing = "stripe"
 })).WithTags("Info").WithDescription("Health check endpoint");
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
-// CHART ENDPOINTS (Require API Key) - Now using local services
+// STRIPE BILLING ENDPOINTS
+// ═══════════════════════════════════════════════════════════════════════════════════════
+
+app.MapPost("/api/checkout", async (CheckoutRequest request, StripeService stripeService) =>
+{
+    try
+    {
+        var result = await stripeService.CreateCheckoutSessionAsync(request);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error creating checkout session");
+        return Results.BadRequest(new { error = ex.Message });
+    }
+})
+.WithTags("Billing")
+.WithDescription("Create Stripe checkout session for Pro or Business plan")
+.Accepts<CheckoutRequest>("application/json")
+.Produces<CheckoutResponse>(200)
+.ProducesProblem(400);
+
+app.MapPost("/api/billing-portal", async (BillingPortalRequest request, StripeService stripeService) =>
+{
+    try
+    {
+        var result = await stripeService.CreateBillingPortalAsync(request);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error creating billing portal");
+        return Results.BadRequest(new { error = ex.Message });
+    }
+})
+.WithTags("Billing")
+.WithDescription("Create Stripe customer billing portal")
+.Accepts<BillingPortalRequest>("application/json")
+.Produces<BillingPortalResponse>(200)
+.ProducesProblem(400);
+
+app.MapPost("/api/webhooks/stripe", async (HttpContext context, StripeService stripeService) =>
+{
+    try
+    {
+        var json = await new StreamReader(context.Request.Body).ReadToEndAsync();
+        var signature = context.Request.Headers["Stripe-Signature"].FirstOrDefault() ?? "";
+
+        await stripeService.HandleStripeWebhookAsync(json, signature);
+        return Results.Ok();
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error processing Stripe webhook");
+        return Results.BadRequest(new { error = "Webhook processing failed" });
+    }
+})
+.WithTags("Webhooks")
+.WithDescription("Stripe webhook endpoint for subscription events")
+.ExcludeFromDescription();
+
+// ═══════════════════════════════════════════════════════════════════════════════════════
+// CHART ENDPOINTS (Require API Key)
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
 app.MapPost("/api/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
@@ -252,7 +342,7 @@ app.MapPost("/api/demo/image", async (ImageRequest request, HumanDesignService h
 // SELF-SERVICE SIGNUP
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/signup", (HttpContext ctx, ApiKeyService keyService) =>
+app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     var name = ctx.Request.Query["name"].FirstOrDefault() ?? "";
     var email = ctx.Request.Query["email"].FirstOrDefault() ?? "";
@@ -263,8 +353,25 @@ app.MapPost("/api/signup", (HttpContext ctx, ApiKeyService keyService) =>
     if (!IsValidEmail(email))
         return Results.BadRequest(new { error = "Invalid email format" });
     
-    var apiKey = keyService.CreateKey(name, email, "free");
-    return Results.Ok(apiKey);
+    try
+    {
+        var apiKey = await keyService.CreateKeyAsync(name, email, "free");
+        return Results.Ok(new
+        {
+            key = apiKey.Key,
+            name = apiKey.Name,
+            email = apiKey.Email,
+            tier = apiKey.Tier,
+            monthlyLimit = apiKey.MonthlyLimit,
+            createdAt = apiKey.CreatedAt,
+            active = apiKey.Active
+        });
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error creating API key");
+        return Results.Problem("Failed to create API key");
+    }
 })
 .WithTags("Signup")
 .WithDescription("Get a free API key - no credit card required")
@@ -274,7 +381,7 @@ app.MapPost("/api/signup", (HttpContext ctx, ApiKeyService keyService) =>
 // ADMIN ENDPOINTS
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/admin/keys", (HttpContext ctx, ApiKeyService keyService) =>
+app.MapPost("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
     
@@ -282,25 +389,73 @@ app.MapPost("/api/admin/keys", (HttpContext ctx, ApiKeyService keyService) =>
     var email = ctx.Request.Query["email"].FirstOrDefault() ?? "";
     var tier = ctx.Request.Query["tier"].FirstOrDefault() ?? "free";
     
-    return Results.Ok(keyService.CreateKey(name, email, tier));
+    try
+    {
+        var apiKey = await keyService.CreateKeyAsync(name, email, tier);
+        return Results.Ok(apiKey);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error creating admin API key");
+        return Results.Problem("Failed to create API key");
+    }
 })
 .WithTags("Admin")
 .ExcludeFromDescription();
 
-app.MapGet("/api/admin/keys", (HttpContext ctx, ApiKeyService keyService) =>
+app.MapGet("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-    return Results.Ok(keyService.ListKeys());
+    
+    try
+    {
+        var keys = await keyService.ListKeysAsync();
+        return Results.Ok(keys);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error listing API keys");
+        return Results.Problem("Failed to list API keys");
+    }
 })
 .WithTags("Admin")
 .ExcludeFromDescription();
 
-app.MapGet("/api/admin/usage/{apiKey}", (string apiKey, HttpContext ctx, ApiKeyService keyService) =>
+app.MapGet("/api/admin/usage/{apiKey}", async (string apiKey, HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-    return Results.Ok(keyService.GetUsage(apiKey));
+    
+    try
+    {
+        var usage = await keyService.GetUsageAsync(apiKey);
+        return Results.Ok(usage);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error getting API usage");
+        return Results.Problem("Failed to get usage data");
+    }
 })
 .WithTags("Admin")
+.ExcludeFromDescription();
+
+app.MapGet("/api/admin/analytics", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
+{
+    if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
+    
+    try
+    {
+        var analytics = await keyService.GetAnalyticsAsync();
+        return Results.Ok(analytics);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error getting analytics");
+        return Results.Problem("Failed to get analytics data");
+    }
+})
+.WithTags("Admin")
+.WithDescription("Get platform analytics and metrics")
 .ExcludeFromDescription();
 
 app.Run();

@@ -22,11 +22,14 @@ RUN mkdir -p /app/data && chmod 755 /app/data
 # Copy published app
 COPY --from=build /app/publish .
 
+# Copy ephemeris data files (required for chart calculations)
+COPY ephe/ ./ephe/
+RUN chmod 644 /app/ephe/*
+
 # Environment variables
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS=http://+:5000
 ENV DataDirectory=/app/data
-ENV HdChartApi__BaseUrl=http://100.101.12.75:5100
 
 # Expose port
 EXPOSE 5000

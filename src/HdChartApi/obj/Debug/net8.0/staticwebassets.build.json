@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "Hash": "C52nvO1kGnkHyXnVzG3Ayo1SKQk8Cdwqa3BzudKUsuU=",
+  "Source": "HdChartApi",
+  "BasePath": "_content/HdChartApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "/home/jarle/.nuget/packages/sharpastrology.humandesign.blazorcomponents/0.2.1/staticwebassets/SharpAstrology.HumanDesign.BlazorComponents.bundle.scp.css",
+      "SourceId": "SharpAstrology.HumanDesign.BlazorComponents",
+      "SourceType": "Package",
+      "ContentRoot": "/home/jarle/.nuget/packages/sharpastrology.humandesign.blazorcomponents/0.2.1/staticwebassets/",
+      "BasePath": "_content/SharpAstrology.HumanDesign.BlazorComponents",
+      "RelativePath": "SharpAstrology.HumanDesign.BlazorComponents.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/jarle/.nuget/packages/sharpastrology.humandesign.blazorcomponents/0.2.1/staticwebassets/SharpAstrology.HumanDesign.BlazorComponents.bundle.scp.css"
+    },
+    {
+      "Identity": "/home/jarle/projects/hd-chart-api/HdChartApi/obj/Debug/net8.0/scopedcss/bundle/HdChartApi.styles.css",
+      "SourceId": "HdChartApi",
+      "SourceType": "Computed",
+      "ContentRoot": "/home/jarle/projects/hd-chart-api/HdChartApi/obj/Debug/net8.0/scopedcss/bundle/",
+      "BasePath": "_content/HdChartApi",
+      "RelativePath": "HdChartApi.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/jarle/projects/hd-chart-api/HdChartApi/obj/Debug/net8.0/scopedcss/bundle/HdChartApi.styles.css"
+    }
+  ]
+}

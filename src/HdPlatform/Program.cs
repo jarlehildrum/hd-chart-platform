@@ -5,10 +5,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Services
-builder.Services.AddHttpClient();
+// Core Services - now local instead of HTTP client
+builder.Services.AddSingleton<HumanDesignService>();
+builder.Services.AddSingleton<GeocodingService>();
+builder.Services.AddSingleton<ChartImageService>();
 builder.Services.AddSingleton<ApiKeyService>();
-builder.Services.AddScoped<HdChartApiClient>();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -79,13 +80,24 @@ app.MapGet("/api/health", () => Results.Ok(new
 })).WithTags("Info").WithDescription("Health check endpoint");
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
-// CHART ENDPOINTS (Require API Key)
+// CHART ENDPOINTS (Require API Key) - Now using local services
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/chart", async (ChartRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
-    var result = await chartApi.CalculateChartAsync(request);
-    return result.Success ? Results.Ok(result.Data) : Results.Problem(result.Error);
+    try
+    {
+        var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var result = hd.CalculateChart(utcBirth);
+        return Results.Ok(new { chart = result, location = new { geoResult.Lat, geoResult.Lng, geoResult.TimeZoneId }, utcBirthDate = utcBirth.ToString("o") });
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error calculating chart");
+        return Results.Problem(ex.Message);
+    }
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart with automatic geocoding and timezone conversion")
@@ -95,42 +107,102 @@ app.MapPost("/api/chart", async (ChartRequest request, HdChartApiClient chartApi
 .ProducesProblem(401)
 .ProducesProblem(429);
 
-app.MapPost("/api/chart/utc", async (ChartRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/chart/utc", (ChartRequest request, HumanDesignService hd) =>
 {
-    var result = await chartApi.CalculateUtcChartAsync(request);
-    return result.Success ? Results.Ok(result.Data) : Results.Problem(result.Error);
+    try
+    {
+        var utcDate = DateTime.SpecifyKind(DateTime.Parse(request.BirthDate), DateTimeKind.Utc);
+        var result = hd.CalculateChart(utcDate);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error calculating UTC chart");
+        return Results.Problem(ex.Message);
+    }
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart from UTC birth time (no geocoding needed)")
 .Accepts<ChartRequest>("application/json")
 .Produces(200);
 
-app.MapPost("/api/chart/transit", async (TransitRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/chart/transit", async (TransitRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
-    var result = await chartApi.CalculateTransitAsync(request);
-    return result.Success ? Results.Ok(result.Data) : Results.Problem(result.Error);
+    try
+    {
+        var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var transitDate = DateTime.Parse(request.TransitDate);
+        var utcTransit = transitDate.Kind == DateTimeKind.Utc ? transitDate : geo.ConvertToUtc(transitDate, geoResult.TimeZone);
+        var result = hd.CalculateTransit(utcBirth, utcTransit);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error calculating transit");
+        return Results.Problem(ex.Message);
+    }
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart with transit overlay for specific date")
 .Accepts<TransitRequest>("application/json")
 .Produces(200);
 
-app.MapPost("/api/chart/composite", async (CompositeRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/chart/composite", async (CompositeRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
-    var result = await chartApi.CalculateCompositeAsync(request);
-    return result.Success ? Results.Ok(result.Data) : Results.Problem(result.Error);
+    try
+    {
+        var date1 = DateTime.Parse(request.BirthDate1);
+        var geo1 = await geo.GeocodeAsync(request.BirthPlace1);
+        var utc1 = geo.ConvertToUtc(date1, geo1.TimeZone);
+        
+        var date2 = DateTime.Parse(request.BirthDate2);
+        var geo2 = await geo.GeocodeAsync(request.BirthPlace2);
+        var utc2 = geo.ConvertToUtc(date2, geo2.TimeZone);
+        
+        var result = hd.CalculateComposite(utc1, utc2);
+        return Results.Ok(result);
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error calculating composite");
+        return Results.Problem(ex.Message);
+    }
 })
 .WithTags("Charts")
 .WithDescription("Calculate composite (relationship) chart between two people")
 .Accepts<CompositeRequest>("application/json")
 .Produces(200);
 
-app.MapPost("/api/chart/image", async (ImageRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/chart/image", async (ImageRequest request, HumanDesignService hd, GeocodingService geo, ChartImageService img) =>
 {
-    var imageData = await chartApi.GenerateImageAsync(request);
-    return imageData != null 
-        ? Results.File(imageData, "image/png", "bodygraph.png")
-        : Results.Problem("Failed to generate chart image");
+    try
+    {
+        var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var chart = hd.GetRawChart(utcBirth);
+        
+        byte[] png;
+        if (!string.IsNullOrEmpty(request.TransitDate))
+        {
+            var transitDate = DateTime.Parse(request.TransitDate);
+            var utcTransit = geo.ConvertToUtc(transitDate, geoResult.TimeZone);
+            var transit = hd.GetRawTransit(utcBirth, utcTransit);
+            png = img.GenerateBodygraphPng(chart, transit);
+        }
+        else
+        {
+            png = img.GenerateBodygraphPng(chart);
+        }
+        return Results.File(png, "image/png", "bodygraph.png");
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error generating chart image");
+        return Results.Problem(ex.Message);
+    }
 })
 .WithTags("Charts")
 .WithDescription("Generate professional bodygraph PNG image")
@@ -141,24 +213,40 @@ app.MapPost("/api/chart/image", async (ImageRequest request, HdChartApiClient ch
 // DEMO ENDPOINTS (No Authentication)
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/demo/chart", async (ChartRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/demo/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
-    var result = await chartApi.CalculateChartAsync(request);
-    return result.Success ? Results.Ok(result.Data) : Results.Problem(result.Error);
-})
-.WithTags("Demo")
-.WithDescription("Demo chart calculation - no API key required")
-.ExcludeFromDescription();
+    try
+    {
+        var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var result = hd.CalculateChart(utcBirth);
+        return Results.Ok(new { chart = result, location = new { geoResult.Lat, geoResult.Lng, geoResult.TimeZoneId } });
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error in demo chart");
+        return Results.Problem(ex.Message);
+    }
+}).WithTags("Demo").WithDescription("Demo chart calculation - no API key required").ExcludeFromDescription();
 
-app.MapPost("/api/demo/image", async (ImageRequest request, HdChartApiClient chartApi) =>
+app.MapPost("/api/demo/image", async (ImageRequest request, HumanDesignService hd, GeocodingService geo, ChartImageService img) =>
 {
-    var imageData = await chartApi.GenerateImageAsync(request);
-    return imageData != null 
-        ? Results.File(imageData, "image/png", "bodygraph-demo.png")
-        : Results.Problem("Failed to generate demo image");
-})
-.WithTags("Demo")
-.ExcludeFromDescription();
+    try
+    {
+        var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var chart = hd.GetRawChart(utcBirth);
+        var png = img.GenerateBodygraphPng(chart);
+        return Results.File(png, "image/png", "bodygraph-demo.png");
+    }
+    catch (Exception ex)
+    {
+        app.Logger.LogError(ex, "Error generating demo image");
+        return Results.Problem(ex.Message);
+    }
+}).WithTags("Demo").ExcludeFromDescription();
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
 // SELF-SERVICE SIGNUP

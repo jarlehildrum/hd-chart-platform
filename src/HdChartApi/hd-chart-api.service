@@ -1,0 +1,17 @@
+[Unit]
+Description=Human Design Chart API
+After=network.target
+
+[Service]
+Type=simple
+User=jarle
+WorkingDirectory=/home/jarle/projects/hd-chart-api/publish
+ExecStart=/home/jarle/.dotnet/dotnet /home/jarle/projects/hd-chart-api/publish/HdChartApi.dll
+Environment=DOTNET_ROOT=/home/jarle/.dotnet
+Environment=ASPNETCORE_URLS=http://127.0.0.1:5100;http://100.101.12.75:5100
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

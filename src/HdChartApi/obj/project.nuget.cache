@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "HFuds/o+i6M=",
+  "success": true,
+  "projectFilePath": "/home/jarle/projects/hd-chart-api/HdChartApi/HdChartApi.csproj",
+  "expectedPackageFiles": [
+    "/home/jarle/.nuget/packages/excss/4.2.3/excss.4.2.3.nupkg.sha512",
+    "/home/jarle/.nuget/packages/geotimezone/5.3.0/geotimezone.5.3.0.nupkg.sha512",
+    "/home/jarle/.nuget/packages/harfbuzzsharp/7.3.0.2/harfbuzzsharp.7.3.0.2.nupkg.sha512",
+    "/home/jarle/.nuget/packages/harfbuzzsharp.nativeassets.macos/7.3.0.2/harfbuzzsharp.nativeassets.macos.7.3.0.2.nupkg.sha512",
+    "/home/jarle/.nuget/packages/harfbuzzsharp.nativeassets.win32/7.3.0.2/harfbuzzsharp.nativeassets.win32.7.3.0.2.nupkg.sha512",
+    "/home/jarle/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/home/jarle/.nuget/packages/netstandard.library/1.6.1/netstandard.library.1.6.1.nupkg.sha512",
+    "/home/jarle/.nuget/packages/sharpastrology.base/0.10.0/sharpastrology.base.0.10.0.nupkg.sha512",
+    "/home/jarle/.nuget/packages/sharpastrology.humandesign/1.1.0/sharpastrology.humandesign.1.1.0.nupkg.sha512",
+    "/home/jarle/.nuget/packages/sharpastrology.humandesign.blazorcomponents/0.2.1/sharpastrology.humandesign.blazorcomponents.0.2.1.nupkg.sha512",
+    "/home/jarle/.nuget/packages/sharpastrology.swisseph/0.2.2/sharpastrology.swisseph.0.2.2.nupkg.sha512",
+    "/home/jarle/.nuget/packages/shimskiasharp/2.0.0.4/shimskiasharp.2.0.0.4.nupkg.sha512",
+    "/home/jarle/.nuget/packages/skiasharp/2.88.8/skiasharp.2.88.8.nupkg.sha512",
+    "/home/jarle/.nuget/packages/skiasharp.harfbuzz/2.88.8/skiasharp.harfbuzz.2.88.8.nupkg.sha512",
+    "/home/jarle/.nuget/packages/skiasharp.nativeassets.linux.nodependencies/2.88.8/skiasharp.nativeassets.linux.nodependencies.2.88.8.nupkg.sha512",
+    "/home/jarle/.nuget/packages/skiasharp.nativeassets.macos/2.88.8/skiasharp.nativeassets.macos.2.88.8.nupkg.sha512",
+    "/home/jarle/.nuget/packages/skiasharp.nativeassets.win32/2.88.8/skiasharp.nativeassets.win32.2.88.8.nupkg.sha512",
+    "/home/jarle/.nuget/packages/svg.custom/2.0.0.4/svg.custom.2.0.0.4.nupkg.sha512",
+    "/home/jarle/.nuget/packages/svg.model/2.0.0.4/svg.model.2.0.0.4.nupkg.sha512",
+    "/home/jarle/.nuget/packages/svg.skia/2.0.0.4/svg.skia.2.0.0.4.nupkg.sha512",
+    "/home/jarle/.nuget/packages/swissephnet/2.8.0.2/swissephnet.2.8.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

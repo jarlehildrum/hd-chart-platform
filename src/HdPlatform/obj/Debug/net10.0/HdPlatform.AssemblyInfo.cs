@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HdPlatform")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7fa85df3d9136de622b60ae139a324d0e183ce2")]
 [assembly: System.Reflection.AssemblyProductAttribute("HdPlatform")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HdPlatform")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

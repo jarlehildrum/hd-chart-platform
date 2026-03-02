@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Design Chart Calculator</title>
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --surface: #1a1a2e;
+            --surface2: #16213e;
+            --accent: #e94560;
+            --accent2: #533483;
+            --text: #eee;
+            --text-dim: #999;
+            --border: #333;
+            --success: #4ecca3;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.25rem;
+        }
+
+        header p { color: var(--text-dim); font-size: 0.85rem; }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+
+        @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .form-group.full-width { grid-column: 1 / -1; }
+
+        label {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input, select {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.65rem 0.8rem;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus, select:focus { outline: none; border-color: var(--accent); }
+
+        .btn-row {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        button:hover { opacity: 0.9; }
+        button:active { transform: scale(0.98); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
+        .btn-secondary { background: var(--surface2); border: 1px solid var(--border); color: var(--text); }
+        .btn-transit { background: linear-gradient(135deg, #4ea8de, #533483); color: white; }
+        .btn-image { background: linear-gradient(135deg, #4ecca3, #1a8870); color: white; }
+        .btn-composite { background: linear-gradient(135deg, #e6a817, #e94560); color: white; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--border); }
+        .tab {
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Transit section */
+        .transit-section {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Composite section */
+        .composite-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .composite-section.visible { display: block; }
+
+        .result { display: none; }
+        .result.visible { display: block; }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .result-header h2 { font-size: 1.4rem; }
+
+        .type-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .type-Generator { background: #e6a817; color: #000; }
+        .type-ManifestingGenerator { background: #e6a817; color: #000; }
+        .type-Projector { background: #4ea8de; color: #000; }
+        .type-Manifestor { background: #e94560; color: #fff; }
+        .type-Reflector { background: #7b68ee; color: #fff; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-box {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 0.8rem;
+        }
+
+        .stat-box .label {
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-box .value { font-size: 1rem; font-weight: 600; margin-top: 0.15rem; }
+
+        .section-title {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .channels-list { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+        .channel-tag {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        .centers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 0.35rem;
+        }
+
+        .center-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.4rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .center-item.defined { color: var(--success); }
+        .center-item.undefined { color: var(--text-dim); }
+
+        .activations-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+
+        .activations-table th {
+            text-align: left;
+            color: var(--text-dim);
+            font-weight: 500;
+            padding: 0.35rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+
+        .activations-table td {
+            padding: 0.35rem 0.5rem;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .activation-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) { .activation-columns { grid-template-columns: 1fr; } }
+
+        /* Transit activations */
+        .transit-activations { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+        .transit-tag { background: #533483; border-color: #7b68ee; }
+
+        /* Channel activation types */
+        .ch-personality { color: #333; background: #ddd; }
+        .ch-design { color: #fff; background: #e94560; }
+        .ch-full { color: #000; background: #4ecca3; }
+        .ch-transit { color: #fff; background: #533483; }
+
+        .error-msg {
+            background: #2d1117;
+            border: 1px solid #e94560;
+            border-radius: 8px;
+            padding: 0.8rem;
+            color: #e94560;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        .error-msg.visible { display: block; }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.6s linear infinite;
+            vertical-align: middle;
+            margin-right: 0.4rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .api-url-bar {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .api-url-bar input { flex: 1; font-size: 0.75rem; padding: 0.35rem 0.6rem; }
+        .api-url-bar label { white-space: nowrap; }
+
+        .bodygraph-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .bodygraph-container img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        footer a { color: var(--accent); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        .toggle-details {
+            cursor: pointer;
+            color: var(--accent);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+        .toggle-details:hover { text-decoration: underline; }
+
+        .collapsible { display: none; }
+        .collapsible.open { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☉ Human Design Calculator</h1>
+            <p>Calculate your natal chart, transits & composites</p>
+        </header>
+
+        <!-- Birth Data Input -->
+        <div class="card">
+            <div class="api-url-bar">
+                <label for="apiUrl">API:</label>
+                <input type="text" id="apiUrl" value="" placeholder="(same origin)">
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="birthDate">Birth Date</label>
+                    <input type="date" id="birthDate" value="1968-11-23">
+                </div>
+                <div class="form-group">
+                    <label for="birthTime">Birth Time (local)</label>
+                    <input type="time" id="birthTime" value="21:19" step="60">
+                </div>
+                <div class="form-group full-width">
+                    <label for="birthPlace">Birth Place</label>
+                    <input type="text" id="birthPlace" value="Drammen, Norway" placeholder="City, Country">
+                </div>
+            </div>
+
+            <!-- Transit date (collapsible) -->
+            <div class="transit-section">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="transitDate">Transit Date (optional)</label>
+                        <input type="date" id="transitDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="transitTime">Transit Time</label>
+                        <input type="time" id="transitTime" value="12:00" step="60">
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn-primary" onclick="calculateChart()">☉ Chart</button>
+                <button class="btn-transit" onclick="calculateTransit()">⟳ Transit</button>
+                <button class="btn-image" onclick="calculateImage()">🎨 Image</button>
+            </div>
+        </div>
+
+        <!-- Composite Input -->
+        <div>
+            <span class="toggle-details" onclick="toggleComposite()">▸ Composite Chart (two people)</span>
+        </div>
+        <div class="composite-section" id="compositeSection">
+            <div class="section-title">Person 2</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="birthDate2">Birth Date</label>
+                    <input type="date" id="birthDate2">
+                </div>
+                <div class="form-group">
+                    <label for="birthTime2">Birth Time (local)</label>
+                    <input type="time" id="birthTime2" step="60">
+                </div>
+                <div class="form-group full-width">
+                    <label for="birthPlace2">Birth Place</label>
+                    <input type="text" id="birthPlace2" placeholder="City, Country">
+                </div>
+                <div class="form-group full-width">
+                    <button class="btn-composite" onclick="calculateComposite()">⚡ Calculate Composite</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-msg" id="errorMsg"></div>
+
+        <!-- Bodygraph Image -->
+        <div class="result card" id="imageCard">
+            <div class="section-title">Bodygraph</div>
+            <div class="bodygraph-container" id="bodygraphContainer"></div>
+        </div>
+
+        <!-- Chart Result -->
+        <div class="result card" id="resultCard">
+            <div class="result-header">
+                <h2 id="resultType"></h2>
+                <span class="type-badge" id="typeBadge"></span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="label">Profile</div>
+                    <div class="value" id="resultProfile"></div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Strategy</div>
+                    <div class="value" id="resultStrategy"></div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Authority</div>
+                    <div class="value" id="resultAuthority"></div>
+                </div>
+                <div class="stat-box">
+                    <div class="label">Definition</div>
+                    <div class="value" id="resultDefinition"></div>
+                </div>
+            </div>
+
+            <div class="stat-box" style="margin-bottom:1rem">
+                <div class="label">Incarnation Cross</div>
+                <div class="value" id="resultCross"></div>
+            </div>
+
+            <div class="section-title">Centers</div>
+            <div class="centers-grid" id="centersGrid"></div>
+
+            <div class="section-title">Active Channels</div>
+            <div class="channels-list" id="channelsList"></div>
+
+            <span class="toggle-details" onclick="toggleActivations()">▸ Show Activations</span>
+            <div class="collapsible" id="activationsSection">
+                <div class="activation-columns">
+                    <div>
+                        <div class="section-title" style="margin-top:0.5rem">☉ Personality (Conscious)</div>
+                        <table class="activations-table" id="personalityTable">
+                            <thead><tr><th>Planet</th><th>Gate</th><th>Line</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <div class="section-title" style="margin-top:0.5rem">◐ Design (Unconscious)</div>
+                        <table class="activations-table" id="designTable">
+                            <thead><tr><th>Planet</th><th>Gate</th><th>Line</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transit Results -->
+            <div class="transit-activations" id="transitSection" style="display:none">
+                <div class="section-title">⟳ Transit Activations</div>
+                <div class="channels-list" id="transitChannelsList"></div>
+                <span class="toggle-details" onclick="toggleTransitActivations()">▸ Show Transit Planets</span>
+                <div class="collapsible" id="transitActivationsDetail">
+                    <table class="activations-table" id="transitTable">
+                        <thead><tr><th>Planet</th><th>Gate</th><th>Line</th></tr></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Composite Result -->
+        <div class="result card" id="compositeCard">
+            <div class="result-header">
+                <h2>Composite Chart</h2>
+            </div>
+            <div class="stat-box" style="margin-bottom:1rem">
+                <div class="label">Definition</div>
+                <div class="value" id="compositeDef"></div>
+            </div>
+            <div class="section-title">Channel Activations</div>
+            <div class="channels-list" id="compositeChannels"></div>
+            <div class="section-title" style="margin-top:1rem">Active Gates</div>
+            <div class="channels-list" id="compositeGates"></div>
+        </div>
+
+        <footer>
+            Powered by <a href="https://github.com/jarlehildrum/hd-chart-api">hd-chart-api</a>
+            · SharpAstrology + Swiss Ephemeris
+        </footer>
+    </div>
+
+    <script>
+        const savedUrl = localStorage.getItem('hdApiUrl');
+        if (savedUrl) document.getElementById('apiUrl').value = savedUrl;
+
+        // Set transit date to today
+        document.getElementById('transitDate').value = new Date().toISOString().split('T')[0];
+
+        function getApiBase() {
+            const url = document.getElementById('apiUrl').value.replace(/\/$/, '');
+            if (url) localStorage.setItem('hdApiUrl', url);
+            return url || window.location.origin;
+        }
+
+        function getBirthDateTime() {
+            const d = document.getElementById('birthDate').value;
+            const t = document.getElementById('birthTime').value;
+            if (!d || !t) throw new Error('Please fill in birth date and time');
+            return `${d}T${t}:00`;
+        }
+
+        function getBirthPlace() {
+            const p = document.getElementById('birthPlace').value;
+            if (!p) throw new Error('Please fill in birth place');
+            return p;
+        }
+
+        async function apiCall(endpoint, body, btn) {
+            const base = getApiBase();
+            btn.disabled = true;
+            const origText = btn.textContent;
+            btn.innerHTML = '<span class="spinner"></span>...';
+            hideError();
+
+            try {
+                const resp = await fetch(`${base}${endpoint}`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'omit',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+                if (!resp.ok) {
+                    const text = await resp.text();
+                    throw new Error(`API error ${resp.status}: ${text}`);
+                }
+                return resp;
+            } finally {
+                btn.disabled = false;
+                btn.textContent = origText;
+            }
+        }
+
+        async function calculateChart() {
+            try {
+                const resp = await apiCall('/api/chart', {
+                    birthDate: getBirthDateTime(),
+                    birthPlace: getBirthPlace()
+                }, event.target);
+                const data = await resp.json();
+                renderChart(data.chart || data);
+                document.getElementById('transitSection').style.display = 'none';
+                document.getElementById('imageCard').classList.remove('visible');
+                document.getElementById('compositeCard').classList.remove('visible');
+            } catch (err) { showError(err.message); }
+        }
+
+        async function calculateTransit() {
+            try {
+                const td = document.getElementById('transitDate').value;
+                const tt = document.getElementById('transitTime').value;
+                if (!td) throw new Error('Please set a transit date');
+
+                const resp = await apiCall('/api/chart/transit', {
+                    birthDate: getBirthDateTime(),
+                    birthPlace: getBirthPlace(),
+                    transitDate: `${td}T${tt}:00`
+                }, event.target);
+                const data = await resp.json();
+                renderChart(data.natalChart);
+                renderTransit(data);
+                document.getElementById('imageCard').classList.remove('visible');
+                document.getElementById('compositeCard').classList.remove('visible');
+            } catch (err) { showError(err.message); }
+        }
+
+        async function calculateImage() {
+            try {
+                const td = document.getElementById('transitDate').value;
+                const tt = document.getElementById('transitTime').value;
+                const body = {
+                    birthDate: getBirthDateTime(),
+                    birthPlace: getBirthPlace()
+                };
+                if (td) body.transitDate = `${td}T${tt}:00`;
+
+                const base = getApiBase();
+                const btn = event.target;
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span>...';
+                hideError();
+
+                const resp = await fetch(`${base}/api/chart/image`, {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'omit',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                btn.disabled = false;
+                btn.textContent = '🎨 Image';
+
+                if (!resp.ok) throw new Error(`API error ${resp.status}`);
+
+                const blob = await resp.blob();
+                const url = URL.createObjectURL(blob);
+                const container = document.getElementById('bodygraphContainer');
+                container.innerHTML = `<img src="${url}" alt="Bodygraph">`;
+                document.getElementById('imageCard').classList.add('visible');
+            } catch (err) { showError(err.message); }
+        }
+
+        async function calculateComposite() {
+            try {
+                const d2 = document.getElementById('birthDate2').value;
+                const t2 = document.getElementById('birthTime2').value;
+                const p2 = document.getElementById('birthPlace2').value;
+                if (!d2 || !t2 || !p2) throw new Error('Please fill in all fields for person 2');
+
+                const resp = await apiCall('/api/chart/composite', {
+                    birthDate1: getBirthDateTime(),
+                    birthPlace1: getBirthPlace(),
+                    birthDate2: `${d2}T${t2}:00`,
+                    birthPlace2: p2
+                }, event.target);
+                const data = await resp.json();
+                renderComposite(data);
+            } catch (err) { showError(err.message); }
+        }
+
+        function renderChart(chart) {
+            document.getElementById('resultCard').classList.add('visible');
+
+            const typeDisplay = chart.type === 'ManifestingGenerator' ? 'Manifesting Generator' : chart.type;
+            document.getElementById('resultType').textContent = typeDisplay;
+
+            const badge = document.getElementById('typeBadge');
+            badge.textContent = chart.profile;
+            badge.className = `type-badge type-${chart.type}`;
+
+            document.getElementById('resultProfile').textContent = chart.profile;
+            document.getElementById('resultStrategy').textContent = chart.strategy;
+            document.getElementById('resultAuthority').textContent = formatAuthority(chart.authority);
+            document.getElementById('resultDefinition').textContent = formatDefinition(chart.splitDefinition);
+            document.getElementById('resultCross').textContent = chart.incarnationCross;
+
+            // Centers
+            const centersGrid = document.getElementById('centersGrid');
+            centersGrid.innerHTML = '';
+            const centerOrder = ['Head', 'Ajna', 'Throat', 'G', 'Heart', 'SacralCenter', 'SolarPlexus', 'Spleen', 'Root'];
+            const centerNames = { 'SacralCenter': 'Sacral', 'SolarPlexus': 'Solar Plexus', 'G': 'G (Self)' };
+            for (const c of centerOrder) {
+                if (chart.centers && c in chart.centers) {
+                    const defined = chart.centers[c];
+                    const div = document.createElement('div');
+                    div.className = `center-item ${defined ? 'defined' : 'undefined'}`;
+                    div.innerHTML = `${defined ? '◆' : '◇'} ${centerNames[c] || c}`;
+                    centersGrid.appendChild(div);
+                }
+            }
+
+            // Channels
+            const channelsList = document.getElementById('channelsList');
+            channelsList.innerHTML = '';
+            for (const ch of (chart.activeChannels || [])) {
+                const span = document.createElement('span');
+                span.className = 'channel-tag';
+                span.textContent = ch;
+                channelsList.appendChild(span);
+            }
+
+            // Activations
+            fillActivationTable('personalityTable', chart.personalityActivation || []);
+            fillActivationTable('designTable', chart.designActivation || []);
+        }
+
+        function renderTransit(data) {
+            const section = document.getElementById('transitSection');
+            section.style.display = 'block';
+
+            // Transit channels
+            const list = document.getElementById('transitChannelsList');
+            list.innerHTML = '';
+            for (const [ch, type] of Object.entries(data.channelActivations || {})) {
+                const span = document.createElement('span');
+                span.className = `channel-tag`;
+                span.textContent = `${ch} (${type})`;
+                list.appendChild(span);
+            }
+
+            // Transit planets
+            fillActivationTable('transitTable', data.transitActivation || []);
+        }
+
+        function renderComposite(data) {
+            document.getElementById('compositeCard').classList.add('visible');
+            document.getElementById('compositeDef').textContent = formatDefinition(data.splitDefinition);
+
+            const chList = document.getElementById('compositeChannels');
+            chList.innerHTML = '';
+            for (const [ch, type] of Object.entries(data.channelActivations || {})) {
+                const span = document.createElement('span');
+                span.className = 'channel-tag';
+                span.textContent = `${ch} (${type})`;
+                chList.appendChild(span);
+            }
+
+            const gList = document.getElementById('compositeGates');
+            gList.innerHTML = '';
+            for (const g of (data.activeGates || [])) {
+                const span = document.createElement('span');
+                span.className = 'channel-tag';
+                span.textContent = g;
+                gList.appendChild(span);
+            }
+        }
+
+        function fillActivationTable(tableId, activations) {
+            const tbody = document.querySelector(`#${tableId} tbody`);
+            tbody.innerHTML = '';
+            const symbols = {
+                'Sun': '☉', 'Earth': '⊕', 'NorthNode': '☊', 'SouthNode': '☋',
+                'Moon': '☽', 'Mercury': '☿', 'Venus': '♀', 'Mars': '♂',
+                'Jupiter': '♃', 'Saturn': '♄', 'Uranus': '♅', 'Neptune': '♆', 'Pluto': '♇'
+            };
+            for (const a of activations) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${symbols[a.planet] || ''} ${a.planet}</td><td>${a.gate}</td><td>${a.line}</td>`;
+                tbody.appendChild(tr);
+            }
+        }
+
+        function formatAuthority(auth) {
+            return { 'Emotional': 'Emotional (Solar Plexus)', 'Sacral': 'Sacral', 'Spleen': 'Splenic',
+                     'Ego': 'Ego / Heart', 'Self': 'Self-Projected', 'None': 'Lunar',
+                     'OuterAuthority': 'Outer Authority' }[auth] || auth;
+        }
+
+        function formatDefinition(def) {
+            return { 'SingleDefinition': 'Single', 'SplitDefinition': 'Split',
+                     'TripleSplit': 'Triple Split', 'QuadrupleSplit': 'Quadruple Split',
+                     'NoDefinition': 'No Definition' }[def] || def;
+        }
+
+        function showError(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.classList.add('visible'); }
+        function hideError() { document.getElementById('errorMsg').classList.remove('visible'); }
+
+        function toggleComposite() {
+            const el = document.getElementById('compositeSection');
+            el.classList.toggle('visible');
+            event.target.textContent = el.classList.contains('visible') ? '▾ Composite Chart (two people)' : '▸ Composite Chart (two people)';
+        }
+
+        function toggleActivations() {
+            const el = document.getElementById('activationsSection');
+            el.classList.toggle('open');
+            event.target.textContent = el.classList.contains('open') ? '▾ Hide Activations' : '▸ Show Activations';
+        }
+
+        function toggleTransitActivations() {
+            const el = document.getElementById('transitActivationsDetail');
+            el.classList.toggle('open');
+            event.target.textContent = el.classList.contains('open') ? '▾ Hide Transit Planets' : '▸ Show Transit Planets';
+        }
+
+        // Enter triggers chart calculation
+        document.querySelectorAll('#birthDate,#birthTime,#birthPlace').forEach(el => {
+            el.addEventListener('keydown', e => { if (e.key === 'Enter') calculateChart(); });
+        });
+    </script>
+</body>
+</html>

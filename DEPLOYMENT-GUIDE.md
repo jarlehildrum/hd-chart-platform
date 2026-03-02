@@ -52,7 +52,7 @@ docker-compose logs -f hd-platform
 ### 4. Access Services
 - **HD Platform API:** http://localhost:8090
 - **API Documentation:** http://localhost:8090/docs  
-- **Grafana Analytics:** http://localhost:3000 (admin/hdplatform123)
+- **Grafana Analytics:** http://localhost:3001 (admin/hdplatform123)
 - **PostgreSQL:** localhost:5432
 
 ## 🔧 **Stripe Setup**
@@ -98,7 +98,7 @@ Business Plan
 - **Revenue growth charts**
 
 ### Access Grafana
-1. Navigate to http://localhost:3000
+1. Navigate to http://localhost:3001
 2. Login: admin / hdplatform123
 3. Dashboard: "HD Platform - Business Overview"
 
@@ -158,7 +158,7 @@ curl http://localhost:8090/api/health
 docker-compose exec postgres pg_isready -U hduser
 
 # Grafana health
-curl http://localhost:3000/api/health
+curl http://localhost:3001/api/health
 ```
 
 ### Performance Metrics

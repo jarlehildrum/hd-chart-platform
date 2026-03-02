@@ -1,0 +1,33 @@
+services:
+  hd-platform:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: hd-platform:latest
+    container_name: hd-platform
+    restart: unless-stopped
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - HdChartApi__BaseUrl=http://100.101.12.75:5100
+      - HD_ADMIN_SECRET=${HD_ADMIN_SECRET:-changeme}
+      - DataDirectory=/app/data
+    ports:
+      - "8080:5000"
+    volumes:
+      - hd_platform_data:/app/data
+    networks:
+      - hd-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+volumes:
+  hd_platform_data:
+    driver: local
+
+networks:
+  hd-network:
+    driver: bridge

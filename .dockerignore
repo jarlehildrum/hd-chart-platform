@@ -1,0 +1,31 @@
+# .dockerignore
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+**/.git/
+**/.gitignore
+**/.dockerignore
+**/Dockerfile
+**/docker-compose*.yml
+**/README*.md
+**/.env
+**/appsettings.Development.json
+**/Properties/launchSettings.json
+
+# Node modules (if any)
+**/node_modules/
+**/npm-debug.log
+
+# Build outputs
+**/publish/
+**/out/
+
+# Test files
+**/test*
+**/*test*
+**/*Test*
+
+# Documentation
+**/docs/
+**/*.md

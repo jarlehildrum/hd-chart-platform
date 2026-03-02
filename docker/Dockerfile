@@ -16,6 +16,13 @@ RUN dotnet publish -c Release -o /app/publish --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 
+# Install fonts for SkiaSharp text rendering
+RUN apt-get update && apt-get install -y \
+    fonts-dejavu-core \
+    fontconfig \
+    && rm -rf /var/lib/apt/lists/* \
+    && fc-cache -fv
+
 # Create data directory for API keys and usage
 RUN mkdir -p /app/data && chmod 755 /app/data
 

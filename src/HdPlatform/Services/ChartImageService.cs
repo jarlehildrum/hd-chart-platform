@@ -14,7 +14,7 @@ public class ChartImageService
     private const string TransitColor = "#6644cc";
     private const string InactiveColor = "#e0ddd8";
     private const string BgColor = "#FAFAF5";
-    private const string FontFamily = "'Segoe UI', Arial, sans-serif";
+    private const string FontFamily = "'DejaVu Sans', Arial, sans-serif";
 
     private static readonly Dictionary<Centers, string> CenterColorMap = new()
     {

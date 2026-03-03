@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HD Platform - Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            background: #333;
+            color: white;
+            padding: 20px;
+            margin: -30px -30px 30px -30px;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            background: #007cba;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background: #005a87;
+        }
+        
+        .debug {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            border: 1px solid #c8e6c9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        
+        .api-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .api-table th, .api-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .api-table th {
+            background: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 HD Platform Admin</h1>
+            <p>Enkel admin-grensesnitt</p>
+        </div>
+        
+        <div id="auth-section">
+            <h2>Admin innlogging</h2>
+            
+            <div class="debug" id="debug">
+                Debug: JavaScript lastet, venter på innlogging...<br>
+                Current URL: <span id="current-url"></span><br>
+                Timestamp: <span id="timestamp"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="admin-secret">Admin Secret:</label>
+                <input type="password" id="admin-secret" value="${HD_ADMIN_SECRET}" placeholder="Admin secret">
+                <small>💡 Standard verdi er fylt ut</small>
+            </div>
+            
+            <button onclick="testLogin()" style="margin-right: 10px;">🔐 Test innlogging</button>
+            <button onclick="testBasic()" style="background: #28a745;">🔧 Test grunnleggende</button>
+            
+            <div id="result" style="margin-top: 20px;"></div>
+        </div>
+        
+        <div id="admin-panel" style="display: none;">
+            <h2>✅ Innlogget!</h2>
+            <button onclick="loadKeys()">Hent API-nøkler</button>
+            <div id="api-keys"></div>
+        </div>
+    </div>
+
+    <script>
+        // Grunnleggende debug-info
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        let adminSecret = '';
+        
+        function log(message) {
+            const debug = document.getElementById('debug');
+            debug.innerHTML += '<br>' + new Date().toLocaleTimeString() + ': ' + message;
+        }
+        
+        function showResult(message, isError = false) {
+            const result = document.getElementById('result');
+            result.className = isError ? 'error' : 'success';
+            result.innerHTML = message;
+        }
+        
+        function testBasic() {
+            log('Testing basic functionality...');
+            
+            try {
+                adminSecret = document.getElementById('admin-secret').value;
+                log('Admin secret length: ' + adminSecret.length);
+                log('Admin secret: ' + adminSecret.substring(0, 10) + '...');
+                
+                // Test fetch API
+                if (typeof fetch === 'function') {
+                    log('✅ Fetch API available');
+                } else {
+                    log('❌ Fetch API not available');
+                }
+                
+                showResult('✅ JavaScript fungerer! Admin secret: ' + adminSecret.length + ' tegn');
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message);
+                showResult('❌ JavaScript error: ' + error.message, true);
+            }
+        }
+        
+        function testLogin() {
+            log('Starting login test...');
+            adminSecret = document.getElementById('admin-secret').value;
+            
+            if (!adminSecret) {
+                showResult('❌ Ingen admin secret oppgitt', true);
+                return;
+            }
+            
+            log('Using admin secret: ' + adminSecret);
+            
+            // Test API call
+            const url = '/admin/keys';
+            const headers = {
+                'X-Admin-Secret': adminSecret
+            };
+            
+            log('Calling: ' + url);
+            log('Headers: ' + JSON.stringify(headers));
+            
+            fetch(url, { headers })
+                .then(response => {
+                    log('Response status: ' + response.status);
+                    log('Response headers: ' + JSON.stringify([...response.headers.entries()]));
+                    
+                    if (response.ok) {
+                        return response.text();
+                    } else {
+                        throw new Error('HTTP ' + response.status);
+                    }
+                })
+                .then(data => {
+                    log('Response data length: ' + data.length);
+                    showResult('✅ Innlogging vellykket! Data mottatt: ' + data.substring(0, 100) + '...');
+                    
+                    document.getElementById('auth-section').style.display = 'none';
+                    document.getElementById('admin-panel').style.display = 'block';
+                })
+                .catch(error => {
+                    log('❌ Fetch error: ' + error.message);
+                    showResult('❌ Innlogging feilet: ' + error.message, true);
+                });
+        }
+        
+        function loadKeys() {
+            log('Loading API keys...');
+            
+            fetch('/admin/keys', {
+                headers: {
+                    'X-Admin-Secret': adminSecret
+                }
+            })
+            .then(response => response.json())
+            .then(keys => {
+                log('Loaded ' + keys.length + ' keys');
+                
+                let html = '<table class="api-table"><tr><th>Navn</th><th>Email</th><th>Plan</th><th>Brukt</th></tr>';
+                keys.forEach(key => {
+                    html += \`<tr>
+                        <td>\${key.name}</td>
+                        <td>\${key.email}</td>
+                        <td>\${key.tier}</td>
+                        <td>\${key.currentMonthUsage}/\${key.monthlyLimit}</td>
+                    </tr>\`;
+                });
+                html += '</table>';
+                
+                document.getElementById('api-keys').innerHTML = html;
+                showResult('✅ API-nøkler lastet: ' + keys.length + ' nøkler');
+            })
+            .catch(error => {
+                log('❌ Error loading keys: ' + error.message);
+                showResult('❌ Feil ved lasting av nøkler: ' + error.message, true);
+            });
+        }
+        
+        // Test at JavaScript fungerer
+        log('✅ JavaScript loaded successfully');
+    </script>
+</body>
+</html>

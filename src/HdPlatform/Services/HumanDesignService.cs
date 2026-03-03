@@ -1,192 +1,81 @@
-using SharpAstrology.DataModels;
-using SharpAstrology.Enums;
-using SharpAstrology.Ephemerides;
-using SharpAstrology.Interfaces;
-using HdPlatform.Models;
+using System.Text.Json;
+using HdPlatform.Core.Models;
 
 namespace HdPlatform.Services;
 
 public class HumanDesignService
 {
-    private readonly SwissEphemeridesService _ephService;
-    private readonly object _lock = new();
+    private readonly HttpClient _httpClient;
+    private readonly ILogger<HumanDesignService> _logger;
+    private const string HD_CHART_API_BASE = "http://100.101.12.75:5100";
 
-    public HumanDesignService()
+    public HumanDesignService(HttpClient httpClient, ILogger<HumanDesignService> logger)
     {
-        const string ephePath = "/app/ephe";
-        Console.WriteLine($"[HD] Ephemeris path: {ephePath}, exists: {Directory.Exists(ephePath)}");
-        if (Directory.Exists(ephePath))
-            foreach (var f in Directory.GetFiles(ephePath)) Console.WriteLine($"[HD]   {Path.GetFileName(f)}");
-        _ephService = new SwissEphemeridesService(ephePath, EphType.Swiss);
-        Console.WriteLine("[HD] SwissEphemeridesService created OK");
+        _httpClient = httpClient;
+        _logger = logger;
     }
 
-    public ChartResponse CalculateChart(DateTime birthDateUtc)
+    public async Task<string?> GenerateChartAsync(
+        DateTime birthDateTime,
+        double latitude,
+        double longitude,
+        string? timezone = null)
     {
-        lock (_lock)
+        try
         {
-            using var eph = _ephService.CreateContext();
-            var chart = new HumanDesignChart(birthDateUtc, eph, EphCalculationMode.Tropic);
-            return MapChart(chart);
+            var request = new ChartRequest
+            {
+                DateTime = birthDateTime.ToString("yyyy-MM-ddTHH:mm:ss"),
+                Latitude = latitude,
+                Longitude = longitude,
+                Timezone = timezone ?? "UTC"
+            };
+
+            var json = JsonSerializer.Serialize(request);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+            _logger.LogInformation($"Requesting chart from {HD_CHART_API_BASE}/api/chart");
+            
+            var response = await _httpClient.PostAsync($"{HD_CHART_API_BASE}/api/chart", content);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                _logger.LogInformation("Chart generated successfully");
+                return result;
+            }
+
+            _logger.LogWarning($"HD Chart API returned {response.StatusCode}: {await response.Content.ReadAsStringAsync()}");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error generating chart");
+            return null;
         }
     }
 
-    public TransitResponse CalculateTransit(DateTime birthDateUtc, DateTime transitDateUtc)
+    public async Task<string?> GenerateTransitAsync(TransitRequest request)
     {
-        lock (_lock)
+        try
         {
-            using var eph = _ephService.CreateContext();
-            var chart = new HumanDesignChart(birthDateUtc, eph, EphCalculationMode.Tropic);
-            var transit = new HumanDesignTransitChart(birthDateUtc, transitDateUtc, eph, EphCalculationMode.Tropic);
+            var json = JsonSerializer.Serialize(request);
+            var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
 
-            var natalResponse = MapChart(chart);
+            var response = await _httpClient.PostAsync($"{HD_CHART_API_BASE}/api/chart/transit", content);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
 
-            var transitActivations = transit.TransitActivation
-                .Select(kv => MapActivation(kv.Key, kv.Value, transit.TransitFixation.GetValueOrDefault(kv.Key)))
-                .ToList();
-
-            var channelActs = transit.ChannelActivations
-                .ToDictionary(kv => FormatChannel(kv.Key), kv => kv.Value.ToString());
-
-            return new TransitResponse(natalResponse, transitActivations, channelActs);
+            _logger.LogWarning($"Transit chart API returned {response.StatusCode}");
+            return null;
         }
-    }
-
-    public CompositeResponse CalculateComposite(DateTime date1Utc, DateTime date2Utc)
-    {
-        lock (_lock)
+        catch (Exception ex)
         {
-            using var eph = _ephService.CreateContext();
-            var composite = new HumanDesignCompositeChart(date1Utc, date2Utc, eph, EphCalculationMode.Tropic);
-
-            var channelActs = composite.ChannelActivations
-                .ToDictionary(kv => FormatChannel(kv.Key), kv => kv.Value.ToString());
-
-            return new CompositeResponse(
-                channelActs,
-                composite.ActiveGates.Select(g => FormatGate(g)).ToList(),
-                composite.SplitDefinition.ToString());
+            _logger.LogError(ex, "Error generating transit chart");
+            return null;
         }
-    }
-
-    public HumanDesignChart GetRawChart(DateTime birthDateUtc)
-    {
-        lock (_lock)
-        {
-            using var eph = _ephService.CreateContext();
-            return new HumanDesignChart(birthDateUtc, eph, EphCalculationMode.Tropic);
-        }
-    }
-
-    public HumanDesignTransitChart GetRawTransit(DateTime birthDateUtc, DateTime transitDateUtc)
-    {
-        lock (_lock)
-        {
-            using var eph = _ephService.CreateContext();
-            return new HumanDesignTransitChart(birthDateUtc, transitDateUtc, eph, EphCalculationMode.Tropic);
-        }
-    }
-
-    private ChartResponse MapChart(HumanDesignChart chart)
-    {
-        var personalityActs = chart.PersonalityActivation
-            .Select(kv => MapActivation(kv.Key, kv.Value, chart.PersonalityFixation.GetValueOrDefault(kv.Key)))
-            .ToList();
-
-        var designActs = chart.DesignActivation
-            .Select(kv => MapActivation(kv.Key, kv.Value, chart.DesignFixation.GetValueOrDefault(kv.Key)))
-            .ToList();
-
-        var centers = new Dictionary<string, bool>();
-        foreach (Centers c in Enum.GetValues<Centers>())
-        {
-            var act = chart.CenterActivations.GetValueOrDefault(c);
-            centers[c.ToString()] = act != ActivationTypes.None;
-        }
-
-        var strategy = chart.Type switch
-        {
-            Types.Manifestor => "To Inform",
-            Types.Generator => "Wait To Respond",
-            Types.ManifestingGenerator => "Wait To Respond",
-            Types.Projector => "Wait For The Invitation",
-            Types.Reflector => "Wait A Lunar Cycle",
-            _ => chart.Type.ToString()
-        };
-
-        return new ChartResponse(
-            Type: chart.Type.ToString(),
-            Profile: FormatProfile(chart.Profile),
-            Strategy: strategy,
-            Authority: chart.Strategy.ToString(),
-            SplitDefinition: chart.SplitDefinition.ToString(),
-            IncarnationCross: FormatIncarnationCross(chart.IncarnationCross),
-            ActiveChannels: chart.ActiveChannels.Select(FormatChannel).ToList(),
-            PersonalityActivation: personalityActs,
-            DesignActivation: designActs,
-            Variables: MapVariables(chart.Variables),
-            Centers: centers
-        );
-    }
-
-    private static ActivationInfo MapActivation(Planets planet, Activation activation, PlanetaryFixation? fixation)
-    {
-        return new ActivationInfo(
-            Planet: planet.ToString(),
-            Gate: FormatGate(activation.Gate),
-            Line: (int)activation.Line,
-            FixingState: fixation?.FixingState.ToString() ?? "None"
-        );
-    }
-
-    private static VariablesInfo MapVariables(Variables v) => new(
-        MapVariable(v.Digestion),
-        MapVariable(v.Perspective),
-        MapVariable(v.Environment),
-        MapVariable(v.Awareness));
-
-    private static VariableInfo MapVariable(Variable v) => new(
-        v.Orientation.ToString(),
-        (int)v.Color,
-        (int)v.Tone,
-        (int)v.Base);
-
-    private static string FormatGate(Gates gate)
-    {
-        return gate.ToString().Replace("Key", "");
-    }
-
-    private static string FormatChannel(Channels channel)
-    {
-        var name = channel.ToString();
-        // e.g. Key1Key8 -> 1-8
-        var parts = name.Split("Key", StringSplitOptions.RemoveEmptyEntries);
-        return string.Join("-", parts);
-    }
-
-    private static string FormatProfile(Profiles profile) => profile switch
-    {
-        Profiles.OneThree => "1/3",
-        Profiles.OneFour => "1/4",
-        Profiles.TwoFour => "2/4",
-        Profiles.TwoFive => "2/5",
-        Profiles.ThreeFive => "3/5",
-        Profiles.ThreeSix => "3/6",
-        Profiles.FourSix => "4/6",
-        Profiles.FourOne => "4/1",
-        Profiles.FiveOne => "5/1",
-        Profiles.FiveTwo => "5/2",
-        Profiles.SixTwo => "6/2",
-        Profiles.SixThree => "6/3",
-        _ => profile.ToString()
-    };
-
-    private static string FormatIncarnationCross(IncarnationCrosses cross)
-    {
-        var name = cross.ToString();
-        // Convert PascalCase to spaces
-        var result = System.Text.RegularExpressions.Regex.Replace(name, "([a-z])([A-Z])", "$1 $2");
-        result = System.Text.RegularExpressions.Regex.Replace(result, "([A-Z]+)([A-Z][a-z])", "$1 $2");
-        return result;
     }
 }

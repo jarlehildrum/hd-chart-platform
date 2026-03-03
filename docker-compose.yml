@@ -14,8 +14,6 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./docker/init-db.sql:/docker-entrypoint-initdb.d/init.sql
-    ports:
-      - "5432:5432"
     networks:
       - hd-network
     healthcheck:
@@ -24,26 +22,23 @@ services:
       timeout: 10s
       retries: 3
 
-  # HD Platform API
-  hd-platform:
+  # HD Platform API Service
+  hd-platform-api:
     build:
       context: .
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile.api
     container_name: hd-platform-api
     restart: always
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://+:5000
       - DATABASE_URL=Host=postgres;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123
-      - HD_ADMIN_SECRET=hd_admin_536290824388ea22
-      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY:-sk_test_placeholder}
-      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET:-whsec_placeholder}
+      - HD_ADMIN_SECRET=${HD_ADMIN_SECRET:-hd_admin_536290824388ea22}
+      - HD_CHART_API_URL=http://100.101.12.75:5100
       - DataDirectory=/app/data
     volumes:
       - hd_data:/app/data
       - hd_logs:/app/logs
-    ports:
-      - "8090:5000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -55,24 +50,49 @@ services:
       timeout: 10s
       retries: 3
 
-  # Grafana Analytics Dashboard
-  grafana:
+  # HD Platform Web Service (same app, different port)
+  hd-platform-web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: hd-platform-web
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5001
+      - DATABASE_URL=Host=postgres;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123
+      - HD_ADMIN_SECRET=${HD_ADMIN_SECRET:-hd_admin_536290824388ea22}
+      - HD_CHART_API_URL=http://100.101.12.75:5100
+      - DataDirectory=/app/data
+    volumes:
+      - hd_data:/app/data
+      - hd_logs:/app/logs
+    depends_on:
+      - postgres
+    networks:
+      - hd-network
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:5001/api"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Grafana Analytics Dashboard - Direct Port Access
+  hd-grafana:
     image: grafana/grafana:10.2.0
     container_name: hd-grafana
     restart: always
     environment:
+      - GF_SECURITY_ADMIN_USER=admin
       - GF_SECURITY_ADMIN_PASSWORD=hdplatform123
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_USERS_ALLOW_ORG_CREATE=false
-      - GF_USERS_AUTO_ASSIGN_ORG=true
-      - GF_USERS_AUTO_ASSIGN_ORG_ROLE=Viewer
       - GF_AUTH_ANONYMOUS_ENABLED=false
-      - GF_SERVER_ROOT_URL=http://localhost:3001/
-      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource,grafana-worldmap-panel
+      - GF_SERVER_HTTP_PORT=3000
+      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=true
+      - GF_PROVISIONING_PATH=/etc/grafana/provisioning
     volumes:
       - grafana_data:/var/lib/grafana
-      - ./docker/grafana/provisioning:/etc/grafana/provisioning
-      - ./docker/grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - "3001:3000"
     depends_on:
@@ -82,7 +102,7 @@ services:
       - hd-network
     user: "0"
 
-  # Redis for caching (optional)
+  # Redis for caching and rate limiting
   redis:
     image: redis:7-alpine
     container_name: hd-redis
@@ -90,30 +110,27 @@ services:
     command: redis-server --requirepass hdplatform123
     volumes:
       - redis_data:/data
-    ports:
-      - "6379:6379"
     networks:
       - hd-network
     healthcheck:
-      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+      test: ["CMD", "redis-cli", "auth", "hdplatform123", "ping"]
       interval: 30s
       timeout: 10s
       retries: 3
 
-  # Nginx Reverse Proxy (optional)
+  # Nginx Reverse Proxy
   nginx:
     image: nginx:alpine
     container_name: hd-nginx
     restart: always
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./docker/nginx/ssl:/etc/nginx/ssl:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
-      - hd-platform
-      - grafana
+      - hd-platform-api
+      - hd-platform-web
+      - hd-grafana
     networks:
       - hd-network
 
@@ -133,11 +150,9 @@ networks:
   hd-network:
     driver: bridge
 
-# Environment variables template
-# Create a .env file with these values:
-#
-# STRIPE_SECRET_KEY=sk_live_your_stripe_secret_key
-# STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
-# HD_ADMIN_SECRET=your_super_secure_admin_secret
-# POSTGRES_PASSWORD=your_secure_postgres_password
-# GRAFANA_PASSWORD=your_grafana_admin_password
+# Access URLs:
+# http://46.224.44.77/          → Landing page
+# http://46.224.44.77/api/      → API endpoints  
+# http://46.224.44.77/docs      → Swagger docs
+# http://46.224.44.77/admin/    → Admin panel
+# http://46.224.44.77/analytics/→ Grafana dashboards

@@ -9,20 +9,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Database
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
     Environment.GetEnvironmentVariable("DATABASE_URL") ??
-    "Host=postgres;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123";
+    "Host=localhost;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123";
 
 builder.Services.AddDbContext<HdPlatformContext>(options =>
     options.UseNpgsql(connectionString));
 
-// HTTP Client for external services
-builder.Services.AddHttpClient();
-
-// Core Services - database-powered
+// Core Services - now using database instead of JSON
 builder.Services.AddScoped<DatabaseApiKeyService>();
 builder.Services.AddScoped<StripeService>();
-builder.Services.AddScoped<HumanDesignService>();
+builder.Services.AddSingleton<HumanDesignService>();
 builder.Services.AddSingleton<GeocodingService>();
-builder.Services.AddScoped<ChartImageService>();
+builder.Services.AddSingleton<ChartImageService>();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -38,8 +35,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Human Design Chart API",
-        Version = "v2.0",
-        Description = "Professional Human Design chart calculations with PostgreSQL + Stripe billing. Built by a certified BG5 consultant.",
+        Version = "v1",
+        Description = "Professional Human Design chart calculations with Stripe billing. Built by a certified BG5 consultant.",
         Contact = new OpenApiContact { Name = "HD Chart API", Email = "hello@hdchartapi.com" }
     });
     c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
@@ -68,7 +65,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        app.Logger.LogError(ex, "Database migration failed - continuing with manual tables");
+        app.Logger.LogError(ex, "Database migration failed");
     }
 }
 
@@ -77,7 +74,7 @@ app.UseCors();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HD Chart API v2.0");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HD Chart API v1");
     c.RoutePrefix = "docs";
 });
 app.UseMiddleware<DatabaseApiKeyMiddleware>();
@@ -94,12 +91,11 @@ app.MapGet("/api", () => Results.Ok(new
 {
     name = "Human Design Chart API",
     version = "v2.0",
-    description = "Professional HD chart calculations with PostgreSQL + Stripe billing",
+    description = "Professional HD chart calculations with Stripe billing",
     docs = "/docs",
     status = "operational",
     built_by = "Certified BG5 consultant",
-    database = "postgresql",
-    billing = "stripe"
+    billing_enabled = true
 })).WithTags("Info").WithDescription("API information and status");
 
 app.MapGet("/api/health", () => Results.Ok(new 
@@ -129,7 +125,7 @@ app.MapPost("/api/checkout", async (CheckoutRequest request, StripeService strip
     }
 })
 .WithTags("Billing")
-.WithDescription("Create Stripe checkout session for Pro ($29) or Business ($99) plan")
+.WithDescription("Create Stripe checkout session for Pro or Business plan")
 .Accepts<CheckoutRequest>("application/json")
 .Produces<CheckoutResponse>(200)
 .ProducesProblem(400);
@@ -174,7 +170,7 @@ app.MapPost("/api/webhooks/stripe", async (HttpContext context, StripeService st
 .ExcludeFromDescription();
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
-// CHART ENDPOINTS (Require API Key) - Database-tracked
+// CHART ENDPOINTS (Require API Key)
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
 app.MapPost("/api/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
@@ -343,7 +339,7 @@ app.MapPost("/api/demo/image", async (ImageRequest request, HumanDesignService h
 }).WithTags("Demo").ExcludeFromDescription();
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
-// SELF-SERVICE SIGNUP (Database-powered)
+// SELF-SERVICE SIGNUP
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
 app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
@@ -368,8 +364,7 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
             tier = apiKey.Tier,
             monthlyLimit = apiKey.MonthlyLimit,
             createdAt = apiKey.CreatedAt,
-            active = apiKey.Active,
-            message = "API key created successfully! Upgrade to Pro ($29) or Business ($99) via /api/checkout"
+            active = apiKey.Active
         });
     }
     catch (Exception ex)
@@ -379,11 +374,11 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
     }
 })
 .WithTags("Signup")
-.WithDescription("Get a free API key stored in PostgreSQL - upgrade via Stripe billing")
+.WithDescription("Get a free API key - no credit card required")
 .ExcludeFromDescription();
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
-// ADMIN ENDPOINTS (Database Analytics)
+// ADMIN ENDPOINTS
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
 app.MapPost("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
@@ -460,7 +455,7 @@ app.MapGet("/api/admin/analytics", async (HttpContext ctx, DatabaseApiKeyService
     }
 })
 .WithTags("Admin")
-.WithDescription("Get platform analytics and metrics from PostgreSQL")
+.WithDescription("Get platform analytics and metrics")
 .ExcludeFromDescription();
 
 app.Run();

@@ -1,5 +1,4 @@
 using System.Text.Json;
-using GeoTimeZone;
 
 namespace HdPlatform.Services;
 
@@ -12,43 +11,42 @@ public class GeocodingService
 
     public async Task<GeoResult> GeocodeAsync(string place)
     {
-        var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(place)}&format=json&limit=1";
-        var json = await _http.GetStringAsync(url);
-        using var doc = JsonDocument.Parse(json);
-        var arr = doc.RootElement;
-        if (arr.GetArrayLength() == 0)
-            throw new Exception($"Could not geocode place: {place}");
-        var first = arr[0];
-        var lat = double.Parse(first.GetProperty("lat").GetString()!, System.Globalization.CultureInfo.InvariantCulture);
-        var lng = double.Parse(first.GetProperty("lon").GetString()!, System.Globalization.CultureInfo.InvariantCulture);
-        
-        // Look up IANA timezone from coordinates
-        var tzResult = TimeZoneLookup.GetTimeZone(lat, lng);
-        var ianaId = tzResult.Result;
-        
-        // Convert IANA to .NET TimeZoneInfo
-        TimeZoneInfo tz;
         try
         {
-            tz = TimeZoneInfo.FindSystemTimeZoneById(ianaId);
-        }
-        catch
-        {
-            tz = TimeZoneInfo.Utc;
-        }
-        
-        return new GeoResult(lat, lng, ianaId, tz);
-    }
+            var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(place)}&format=json&limit=1";
+            var json = await _http.GetStringAsync(url);
+            using var doc = JsonDocument.Parse(json);
+            var arr = doc.RootElement;
+            if (arr.GetArrayLength() == 0)
+                throw new Exception($"Could not geocode place: {place}");
 
-    /// <summary>
-    /// Convert a local birth time to UTC using the timezone of the birth place.
-    /// </summary>
-    public DateTime ConvertToUtc(DateTime localTime, TimeZoneInfo tz)
-    {
-        // Treat as unspecified local time
-        var unspecified = DateTime.SpecifyKind(localTime, DateTimeKind.Unspecified);
-        return TimeZoneInfo.ConvertTimeToUtc(unspecified, tz);
+            var item = arr[0];
+            var lat = double.Parse(item.GetProperty("lat").GetString()!);
+            var lon = double.Parse(item.GetProperty("lon").GetString()!);
+            var displayName = item.GetProperty("display_name").GetString()!;
+
+            // Simple timezone estimation (fallback to UTC)
+            var timezone = "UTC";
+            
+            return new GeoResult
+            {
+                Latitude = lat,
+                Longitude = lon,
+                DisplayName = displayName,
+                Timezone = timezone
+            };
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Geocoding failed for '{place}': {ex.Message}");
+        }
     }
 }
 
-public record GeoResult(double Lat, double Lng, string TimeZoneId, TimeZoneInfo TimeZone);
+public class GeoResult
+{
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
+    public string DisplayName { get; set; } = "";
+    public string Timezone { get; set; } = "UTC";
+}

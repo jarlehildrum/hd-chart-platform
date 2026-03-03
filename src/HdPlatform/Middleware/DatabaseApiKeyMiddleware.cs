@@ -146,9 +146,9 @@ public class DatabaseApiKeyMiddleware
     {
         context.Response.StatusCode = 429;
         context.Response.ContentType = "application/json";
-        context.Response.Headers.Add("X-RateLimit-Limit", monthlyLimit.ToString());
-        context.Response.Headers.Add("X-RateLimit-Remaining", "0");
-        context.Response.Headers.Add("Retry-After", "3600");
+        context.Response.Headers.Append("X-RateLimit-Limit", monthlyLimit.ToString());
+        context.Response.Headers.Append("X-RateLimit-Remaining", "0");
+        context.Response.Headers.Append("Retry-After", "3600");
         
         await context.Response.WriteAsync($"{{\"error\":\"Rate limit exceeded. Monthly limit: {monthlyLimit} requests.\",\"statusCode\":429,\"monthlyLimit\":{monthlyLimit}}}");
     }

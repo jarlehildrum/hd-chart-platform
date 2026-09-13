@@ -1,11 +1,6 @@
 -- Initialize HD Platform Database
--- This script sets up the initial database structure
-
-CREATE DATABASE hdplatform;
-CREATE USER hduser WITH ENCRYPTED PASSWORD 'hdplatform123';
-GRANT ALL PRIVILEGES ON DATABASE hdplatform TO hduser;
-
-\c hdplatform;
+-- This script runs inside the database/user that POSTGRES_DB/POSTGRES_USER
+-- (docker-compose environment) already created, so no CREATE DATABASE/USER here.
 
 -- Grant schema permissions
 GRANT ALL ON SCHEMA public TO hduser;

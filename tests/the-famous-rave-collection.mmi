@@ -1,0 +1,1635 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Charts xmlns="http://Stratogos.MMI.Documents">
+  <Chart>
+    <ID>173</ID>
+    <DisplayName>Mick Jagger</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1943-07-26T02:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613013274000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1943-07-26T00:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>613013202000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1943-04-25T06:07:49</OtherDateUT>
+    <OtherDateUT_Ticks>612933916690000000</OtherDateUT_Ticks>
+    <BirthPlace>Dartford ,  United Kingdom</BirthPlace>
+    <TimeZone>BDST(UT - 2:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>172</ID>
+    <DisplayName>Matt Damon</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1970-10-08T15:22:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>621598441200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1970-10-08T19:22:00</BirthDateUT>
+    <BirthDateUT_Ticks>621598585200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1970-07-09T17:56:03</OtherDateUT>
+    <OtherDateUT_Ticks>621519909630000000</OtherDateUT_Ticks>
+    <BirthPlace>Boston , Massachusetts</BirthPlace>
+    <TimeZone>EDT (UT + 4:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>171</ID>
+    <DisplayName>Steve Jobs</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1955-02-24T19:15:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>616669461000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1955-02-25T03:15:00</BirthDateUT>
+    <BirthDateUT_Ticks>616669749000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1954-11-30T11:54:44</OtherDateUT>
+    <OtherDateUT_Ticks>616594892840000000</OtherDateUT_Ticks>
+    <BirthPlace>San Francisco ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>170</ID>
+    <DisplayName>Arnold Schwarzenegger</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1947-07-30T04:10:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>614279094000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1947-07-30T02:10:00</BirthDateUT>
+    <BirthDateUT_Ticks>614279022000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1947-04-29T05:56:54</OtherDateUT>
+    <OtherDateUT_Ticks>614199670140000000</OtherDateUT_Ticks>
+    <BirthPlace>Graz ,  Austria</BirthPlace>
+    <TimeZone>CEDT(UT - 2:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>169</ID>
+    <DisplayName>Harrison Ford</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1942-07-13T11:41:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>612687012600000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1942-07-13T16:41:00</BirthDateUT>
+    <BirthDateUT_Ticks>612687192600000000</BirthDateUT_Ticks>
+    <OtherDateUT>1942-04-13T05:00:06</OtherDateUT>
+    <OtherDateUT_Ticks>612608148060000000</OtherDateUT_Ticks>
+    <BirthPlace>Chicago ,  Illinois</BirthPlace>
+    <TimeZone>CWT (UT + 5:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>168</ID>
+    <DisplayName>Clint Eastwood</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1930-05-31T17:35:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>608863161000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1930-06-01T01:35:00</BirthDateUT>
+    <BirthDateUT_Ticks>608863449000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1930-03-03T03:31:24</OtherDateUT>
+    <OtherDateUT_Ticks>608785758840000000</OtherDateUT_Ticks>
+    <BirthPlace>San Francisco ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>167</ID>
+    <DisplayName>Charlie Sheen</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1965-09-03T22:48:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>619990804800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1965-09-04T02:48:00</BirthDateUT>
+    <BirthDateUT_Ticks>619990948800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1965-06-04T04:59:54</OtherDateUT>
+    <OtherDateUT_Ticks>619911539940000000</OtherDateUT_Ticks>
+    <BirthPlace>New York ,  New York</BirthPlace>
+    <TimeZone>EDT (UT + 4:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>166</ID>
+    <DisplayName>Julian Assange</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1971-07-03T15:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>621829980000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1971-07-03T05:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>621829620000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1971-04-03T01:03:08</OtherDateUT>
+    <OtherDateUT_Ticks>621750853880000000</OtherDateUT_Ticks>
+    <BirthPlace>Townsville , Australia</BirthPlace>
+    <TimeZone>AEST(UT - 10:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>165</ID>
+    <DisplayName>Lady Gaga</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1986-03-28T09:53:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>626479843800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1986-03-28T14:53:00</BirthDateUT>
+    <BirthDateUT_Ticks>626480023800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1985-12-31T09:02:16</OtherDateUT>
+    <OtherDateUT_Ticks>626404645360000000</OtherDateUT_Ticks>
+    <BirthPlace>New York ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3IEFyYW5nb0FyYW5nb0FyYW5nb1xwYXINCn0NCg==</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>164</ID>
+    <DisplayName>Zinedine Zidane</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1972-06-23T03:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622137132000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1972-06-23T02:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>622137096000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1972-03-24T05:58:22</OtherDateUT>
+    <OtherDateUT_Ticks>622058615020000000</OtherDateUT_Ticks>
+    <BirthPlace>Marseille ,  France</BirthPlace>
+    <TimeZone>CET (UT - 1:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>163</ID>
+    <DisplayName>Roger Federer</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1981-08-08T08:40:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>625017048000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1981-08-08T06:40:00</BirthDateUT>
+    <BirthDateUT_Ticks>625016976000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1981-05-08T07:43:02</OtherDateUT>
+    <OtherDateUT_Ticks>624937525820000000</OtherDateUT_Ticks>
+    <BirthPlace>Basel ,  Switzerland</BirthPlace>
+    <TimeZone>CEDT(UT - 2:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>162</ID>
+    <DisplayName>Rafael Nadal</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1986-06-03T19:15:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>626538069000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1986-06-03T17:15:00</BirthDateUT>
+    <BirthDateUT_Ticks>626537997000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1986-03-05T17:01:30</OtherDateUT>
+    <OtherDateUT_Ticks>626460228900000000</OtherDateUT_Ticks>
+    <BirthPlace>Manacor ,  Spain</BirthPlace>
+    <TimeZone>CEDT(UT - 2:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>161</ID>
+    <DisplayName>Jim Morrison</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1943-12-08T11:55:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613130253000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1943-12-08T15:55:00</BirthDateUT>
+    <BirthDateUT_Ticks>613130397000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1943-09-11T07:25:41</OtherDateUT>
+    <OtherDateUT_Ticks>613054059410000000</OtherDateUT_Ticks>
+    <BirthPlace>Melbourne Beach ,  Florida</BirthPlace>
+    <TimeZone>EWT (UT + 4:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>160</ID>
+    <DisplayName>Salvador Dali</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1904-05-11T08:45:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>600641019000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1904-05-11T08:45:00</BirthDateUT>
+    <BirthDateUT_Ticks>600641019000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1904-02-12T08:23:10</OtherDateUT>
+    <OtherDateUT_Ticks>600564109900000000</OtherDateUT_Ticks>
+    <BirthPlace>Figueras ,  Spain</BirthPlace>
+    <TimeZone>UT</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>159</ID>
+    <DisplayName>Fidel Castro</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1926-08-13T02:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>607664232000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1926-08-13T07:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>607664412000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1926-05-13T07:11:18</OtherDateUT>
+    <OtherDateUT_Ticks>607584930780000000</OtherDateUT_Ticks>
+    <BirthPlace>Báez , Cuba</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>158</ID>
+    <DisplayName>Madonna</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1958-08-16T19:05:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>617765871000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1958-08-17T00:05:00</BirthDateUT>
+    <BirthDateUT_Ticks>617766051000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1958-05-17T00:02:45</OtherDateUT>
+    <OtherDateUT_Ticks>617686561650000000</OtherDateUT_Ticks>
+    <BirthPlace>Bay City ,  Michigan</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>157</ID>
+    <DisplayName>Marilyn Monroe</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1926-06-01T09:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>607601430000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1926-06-01T17:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>607601718000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1926-03-03T18:44:51</OtherDateUT>
+    <OtherDateUT_Ticks>607524002910000000</OtherDateUT_Ticks>
+    <BirthPlace>Los Angeles ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>156</ID>
+    <DisplayName>Andy Warhol</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1928-08-06T06:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>608289930000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1928-08-06T10:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>608290074000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1928-05-06T11:41:33</OtherDateUT>
+    <OtherDateUT_Ticks>608210628930000000</OtherDateUT_Ticks>
+    <BirthPlace>Pittsburgh ,  Pennsylvania</BirthPlace>
+    <TimeZone>EDT (UT + 4:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>155</ID>
+    <DisplayName>Osama Bin Laden</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1957-03-10T10:58:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>617312842800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1957-03-10T07:58:00</BirthDateUT>
+    <BirthDateUT_Ticks>617312734800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1956-12-13T12:19:37</OtherDateUT>
+    <OtherDateUT_Ticks>617237723770000000</OtherDateUT_Ticks>
+    <BirthPlace>Riyadh ,  Saudi Arabia</BirthPlace>
+    <TimeZone>BAT (UT - 3:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>154</ID>
+    <DisplayName>Brad Pitt</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1963-12-18T06:31:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>619450218600000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1963-12-18T12:31:00</BirthDateUT>
+    <BirthDateUT_Ticks>619450434600000000</BirthDateUT_Ticks>
+    <OtherDateUT>1963-09-21T13:57:17</OtherDateUT>
+    <OtherDateUT_Ticks>619374454370000000</OtherDateUT_Ticks>
+    <BirthPlace>Shawnee ,  Oklahoma</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>153</ID>
+    <DisplayName>Lionel Messi</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1987-06-24T06:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>626871096000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1987-06-24T09:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>626871204000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1987-03-25T12:48:31</OtherDateUT>
+    <OtherDateUT_Ticks>626792717110000000</OtherDateUT_Ticks>
+    <BirthPlace>Santa Fe ,  Argentina</BirthPlace>
+    <TimeZone>BZT2(UT + 3:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>152</ID>
+    <DisplayName>Marlon Brando</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1924-04-03T23:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>606920220000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1924-04-04T05:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>606920436000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1924-01-07T17:19:01</OtherDateUT>
+    <OtherDateUT_Ticks>606844847410000000</OtherDateUT_Ticks>
+    <BirthPlace>Omaha ,  Nebraska</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>151</ID>
+    <DisplayName>Cristiano Ronaldo</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1985-02-05T10:20:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>626120436000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1985-02-05T10:20:00</BirthDateUT>
+    <BirthDateUT_Ticks>626120436000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1984-11-10T19:01:50</OtherDateUT>
+    <OtherDateUT_Ticks>626045581100000000</OtherDateUT_Ticks>
+    <BirthPlace>Madeira  ,   Portugal</BirthPlace>
+    <TimeZone>UT</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>150</ID>
+    <DisplayName>Barack Obama</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1961-08-04T19:24:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>618702458400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1961-08-05T05:24:00</BirthDateUT>
+    <BirthDateUT_Ticks>618702818400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1961-05-05T07:08:53</OtherDateUT>
+    <OtherDateUT_Ticks>618623393330000000</OtherDateUT_Ticks>
+    <BirthPlace>Honolulu ,  Hawaii</BirthPlace>
+    <TimeZone>AHST(UT + 10:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>149</ID>
+    <DisplayName>Leonardo Dicaprio</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1974-11-11T02:47:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622889668200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1974-11-11T10:47:00</BirthDateUT>
+    <BirthDateUT_Ticks>622889956200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1974-08-13T19:36:58</OtherDateUT>
+    <OtherDateUT_Ticks>622812514180000000</OtherDateUT_Ticks>
+    <BirthPlace>Los Angeles ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>148</ID>
+    <DisplayName>Amy Winehouse</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1983-09-14T22:25:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>625680231000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1983-09-14T21:25:00</BirthDateUT>
+    <BirthDateUT_Ticks>625680195000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1983-06-15T03:24:46</OtherDateUT>
+    <OtherDateUT_Ticks>625600922860000000</OtherDateUT_Ticks>
+    <BirthPlace>Enfield ,  United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>147</ID>
+    <DisplayName>Robert Downey Jr.</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1965-04-04T13:10:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>619859130000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1965-04-04T18:10:00</BirthDateUT>
+    <BirthDateUT_Ticks>619859310000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1965-01-07T06:22:17</OtherDateUT>
+    <OtherDateUT_Ticks>619783717370000000</OtherDateUT_Ticks>
+    <BirthPlace>Manhattan ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3XHBhcg0KfQ0K</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>146</ID>
+    <DisplayName>Adele Laurie Blue Adkins</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1988-05-05T03:02:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>627144013200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1988-05-05T02:02:00</BirthDateUT>
+    <BirthDateUT_Ticks>627143977200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1988-02-06T09:18:00</OtherDateUT>
+    <OtherDateUT_Ticks>627067342800000000</OtherDateUT_Ticks>
+    <BirthPlace>London ,  United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <Comments>e1xydGYxXGFuc2lcYW5zaWNwZzEyNTJcZGVmZjBcZGVmbGFuZzEwMzN7XGZvbnR0Ymx7XGYwXGZuaWxcZmNoYXJzZXQwIFRhaG9tYTt9fQ0KXHZpZXdraW5kNFx1YzFccGFyZFxmMFxmczE3IEFkZWxlIExhdXJpZSBCbHVlIEFka2luc0FkZWxlIExhdXJpZSBCbHVlIEFka2luc0FkZWxlIExhdXJpZSBCbHVlIEFka2luc0FkZWxlIExhdXJpZSBCbHVlIEFka2luc1xwYXINCn0NCg==</Comments>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>72</ID>
+    <DisplayName>Woody Allen</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1935-12-01T22:55:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>610599993000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1935-12-02T03:55:00</BirthDateUT>
+    <BirthDateUT_Ticks>610600173000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1935-09-04T12:33:51</OtherDateUT>
+    <OtherDateUT_Ticks>610523588310000000</OtherDateUT_Ticks>
+    <BirthPlace>Bronx ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>71</ID>
+    <DisplayName>Vladmir Putin</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1952-10-07T09:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>615917430000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1952-10-07T06:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>615917322000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1952-07-08T04:08:13</OtherDateUT>
+    <OtherDateUT_Ticks>615838612930000000</OtherDateUT_Ticks>
+    <BirthPlace>St Peterburg &gt; St Petersburg , Russia</BirthPlace>
+    <TimeZone>BAT (UT - 3:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>70</ID>
+    <DisplayName>Tony Blair</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1953-05-06T06:10:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>616099614000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1953-05-06T05:10:00</BirthDateUT>
+    <BirthDateUT_Ticks>616099578000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1953-02-06T11:00:31</OtherDateUT>
+    <OtherDateUT_Ticks>616022892310000000</OtherDateUT_Ticks>
+    <BirthPlace>Edimbourg &gt; Edinburgh , United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>69</ID>
+    <DisplayName>Tom Hanks</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1956-07-09T11:17:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>617102038200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1956-07-09T18:17:00</BirthDateUT>
+    <BirthDateUT_Ticks>617102290200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1956-04-09T08:46:28</OtherDateUT>
+    <OtherDateUT_Ticks>617023323880000000</OtherDateUT_Ticks>
+    <BirthPlace>Concord ,  California</BirthPlace>
+    <TimeZone>PDT (UT + 7:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>68</ID>
+    <DisplayName>Timothy Leary</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1920-10-22T10:45:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>605832003000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1920-10-22T10:45:00</BirthDateUT>
+    <BirthDateUT_Ticks>605832003000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:36</OtherDateUT>
+    <OtherDateUT_Ticks>634816647360093714</OtherDateUT_Ticks>
+    <BirthPlace>Springfield,Massachusetts</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>67</ID>
+    <DisplayName>Theresa Heinz-Kerry</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1938-10-05T08:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>611497152000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1938-10-05T06:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>611497080000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647359937452</OtherDateUT_Ticks>
+    <BirthPlace>Catuane,Mozambique</BirthPlace>
+    <TimeZone>EET (UT + 02:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>66</ID>
+    <DisplayName>Sting</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1951-10-02T01:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>615596598000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1951-10-02T00:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>615596562000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1951-07-02T17:22:40</OtherDateUT>
+    <OtherDateUT_Ticks>615517681600000000</OtherDateUT_Ticks>
+    <BirthPlace>Wallsend , United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>65</ID>
+    <DisplayName>Steven Spielberg</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1946-12-18T18:16:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>614086065600000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1946-12-18T23:16:00</BirthDateUT>
+    <BirthDateUT_Ticks>614086245600000000</BirthDateUT_Ticks>
+    <OtherDateUT>1946-09-22T01:42:01</OtherDateUT>
+    <OtherDateUT_Ticks>614010301210000000</OtherDateUT_Ticks>
+    <BirthPlace>Cincinnati ,  Ohio</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>64</ID>
+    <DisplayName>Stephen King</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1947-09-21T01:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>614324790000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1947-09-21T05:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>614324934000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1947-06-21T15:01:06</OtherDateUT>
+    <OtherDateUT_Ticks>614245788660000000</OtherDateUT_Ticks>
+    <BirthPlace>Portland ,  Maine</BirthPlace>
+    <TimeZone>EDT (UT + 4:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>63</ID>
+    <DisplayName>Sophie Loren</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1934-09-20T14:10:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>610222110000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1934-09-20T13:10:00</BirthDateUT>
+    <BirthDateUT_Ticks>610222074000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1934-06-20T22:35:42</OtherDateUT>
+    <OtherDateUT_Ticks>610142925420000000</OtherDateUT_Ticks>
+    <BirthPlace>Rome &gt; Roma , Italy</BirthPlace>
+    <TimeZone>CET (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>62</ID>
+    <DisplayName>Sigmund Freud</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1856-05-06T09:17:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>585489934200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1856-05-06T09:17:00</BirthDateUT>
+    <BirthDateUT_Ticks>585489934200000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647358999880</OtherDateUT_Ticks>
+    <BirthPlace>Freiberg,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>61</ID>
+    <DisplayName>Shaq O'Neal</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1972-03-06T08:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622043136000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1972-03-06T13:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>622043316000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1971-12-10T18:59:44</OtherDateUT>
+    <OtherDateUT_Ticks>621968363840000000</OtherDateUT_Ticks>
+    <BirthPlace>Newark ,  New Jersey</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>60</ID>
+    <DisplayName>Roman Polanski</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1933-08-18T10:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>609878106000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1933-08-18T09:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>609878070000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1933-05-18T09:17:42</OtherDateUT>
+    <OtherDateUT_Ticks>609798574620000000</OtherDateUT_Ticks>
+    <BirthPlace>Paris , France</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>59</ID>
+    <DisplayName>Rod Stewart</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1945-01-10T01:17:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613474606200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1945-01-10T00:17:00</BirthDateUT>
+    <BirthDateUT_Ticks>613474570200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1944-10-14T21:26:07</OtherDateUT>
+    <OtherDateUT_Ticks>613399299670000000</OtherDateUT_Ticks>
+    <BirthPlace>London , United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>58</ID>
+    <DisplayName>Robert Redford</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1936-08-18T20:02:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>610825393200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1936-08-19T04:02:00</BirthDateUT>
+    <BirthDateUT_Ticks>610825681200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1936-05-19T03:44:31</OtherDateUT>
+    <OtherDateUT_Ticks>610746182710000000</OtherDateUT_Ticks>
+    <BirthPlace>Santa Monica ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>57</ID>
+    <DisplayName>Richard Branson</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1950-07-18T07:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>615215772000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1950-07-18T06:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>615215736000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1950-04-17T15:28:25</OtherDateUT>
+    <OtherDateUT_Ticks>615136589050000000</OtherDateUT_Ticks>
+    <BirthPlace>Blackheath , United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>56</ID>
+    <DisplayName>Queen Elizabeth II</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1926-04-21T02:40:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>607565760000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1926-04-21T01:40:00</BirthDateUT>
+    <BirthDateUT_Ticks>607565724000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1926-01-22T23:14:31</OtherDateUT>
+    <OtherDateUT_Ticks>607489604710000000</OtherDateUT_Ticks>
+    <BirthPlace>London  ,  United Kingdom</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>55</ID>
+    <DisplayName>Pope John Paul II</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1920-05-18T17:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>605696598000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1920-05-18T15:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>605696526000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1920-02-19T07:13:47</OtherDateUT>
+    <OtherDateUT_Ticks>605619332270000000</OtherDateUT_Ticks>
+    <BirthPlace>Wadowice , Poland</BirthPlace>
+    <TimeZone>EET (UT - 2:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>54</ID>
+    <DisplayName>Nicolas Cage</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1964-01-07T05:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>619467462000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1964-01-07T13:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>619467750000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1963-10-12T08:13:12</OtherDateUT>
+    <OtherDateUT_Ticks>619392391920000000</OtherDateUT_Ticks>
+    <BirthPlace>Harbor City ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>53</ID>
+    <DisplayName>Nicholas Sandueak</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1933-06-22T15:48:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>609829048800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1933-06-22T19:48:00</BirthDateUT>
+    <BirthDateUT_Ticks>609829192800000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647357280998</OtherDateUT_Ticks>
+    <BirthPlace>Lackawanna, New York</BirthPlace>
+    <TimeZone>EDT (UT - 04:00:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>52</ID>
+    <DisplayName>Naomi Campbell</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1970-05-22T01:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>621477828000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1970-05-22T00:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>621477792000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1970-02-21T13:09:13</OtherDateUT>
+    <OtherDateUT_Ticks>621400505530000000</OtherDateUT_Ticks>
+    <BirthPlace>Westminster , United Kingdom</BirthPlace>
+    <TimeZone>CET (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>51</ID>
+    <DisplayName>Monika Lewinsky</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1973-07-23T19:25:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622479003000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1973-07-23T19:25:00</BirthDateUT>
+    <BirthDateUT_Ticks>622479003000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647356812212</OtherDateUT_Ticks>
+    <BirthPlace>Dresden,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>50</ID>
+    <DisplayName>Miles Davis</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1926-05-25T05:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>607595220000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1926-05-25T11:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>607595436000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1926-02-24T20:02:13</OtherDateUT>
+    <OtherDateUT_Ticks>607518001330000000</OtherDateUT_Ticks>
+    <BirthPlace>North Alton ,  Illinois</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>49</ID>
+    <DisplayName>Michelle Pfeiffer</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1958-04-29T08:10:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>617671302000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1958-04-29T08:10:00</BirthDateUT>
+    <BirthDateUT_Ticks>617671302000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647356499688</OtherDateUT_Ticks>
+    <BirthPlace>Santa Ana,California</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>48</ID>
+    <DisplayName>Michael Jackson</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1958-08-29T19:33:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>617777119800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1958-08-30T00:33:00</BirthDateUT>
+    <BirthDateUT_Ticks>617777299800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1958-05-30T01:21:48</OtherDateUT>
+    <OtherDateUT_Ticks>617697841080000000</OtherDateUT_Ticks>
+    <BirthPlace>Gary , Indiana</BirthPlace>
+    <TimeZone>CDT (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>47</ID>
+    <DisplayName>Marie Currie</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1867-11-07T13:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>589120614000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1867-11-07T13:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>589120614000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647356030902</OtherDateUT_Ticks>
+    <BirthPlace>Warsaw &gt; Warszawa,Poland</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>46</ID>
+    <DisplayName>Margaret Thatcher</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1925-10-13T09:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>607401828000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1925-10-13T09:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>607401828000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1925-07-14T12:05:47</OtherDateUT>
+    <OtherDateUT_Ticks>607323315470000000</OtherDateUT_Ticks>
+    <BirthPlace>Grantham , United Kingdom</BirthPlace>
+    <TimeZone>UT</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>45</ID>
+    <DisplayName>Luciano Pavarotti</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1935-10-12T01:40:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>610556028000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1935-10-12T00:40:00</BirthDateUT>
+    <BirthDateUT_Ticks>610555992000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1935-07-13T01:58:15</OtherDateUT>
+    <OtherDateUT_Ticks>610477414950000000</OtherDateUT_Ticks>
+    <BirthPlace>Modena , Italy</BirthPlace>
+    <TimeZone>CET (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>44</ID>
+    <DisplayName>Larry King</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1933-11-19T10:38:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>609958462800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1933-11-19T15:38:00</BirthDateUT>
+    <BirthDateUT_Ticks>609958642800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1933-08-22T10:49:52</OtherDateUT>
+    <OtherDateUT_Ticks>609881573920000000</OtherDateUT_Ticks>
+    <BirthPlace>Brooklyn ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>43</ID>
+    <DisplayName>Krishnamurti</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1895-05-12T12:25:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>597802047000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1895-05-12T07:04:00</BirthDateUT>
+    <BirthDateUT_Ticks>597801854400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1895-02-12T05:16:05</OtherDateUT>
+    <OtherDateUT_Ticks>597724893650000000</OtherDateUT_Ticks>
+    <BirthPlace>Madanapalle , India</BirthPlace>
+    <TimeZone>-5.35(UT - 5:20)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>42</ID>
+    <DisplayName>Kobe Bryant</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1978-08-23T05:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>624082932000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1978-08-23T09:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>624083076000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647355093330</OtherDateUT_Ticks>
+    <BirthPlace>Philadelphia, Pennsylvania</BirthPlace>
+    <TimeZone>EDT (UT - 04:00:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>41</ID>
+    <DisplayName>Kenneth Winston Starr</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1946-07-22T00:55:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613956705000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1946-07-22T00:55:00</BirthDateUT>
+    <BirthDateUT_Ticks>613956705000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647354780806</OtherDateUT_Ticks>
+    <BirthPlace>Dresden,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>40</ID>
+    <DisplayName>Karl Marx</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1818-05-05T07:15:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>573496677000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1818-05-05T07:15:00</BirthDateUT>
+    <BirthDateUT_Ticks>573496677000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647354624544</OtherDateUT_Ticks>
+    <BirthPlace>Trier,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>39</ID>
+    <DisplayName>Jonas Salk</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1914-10-28T07:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>603943182000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1914-10-28T12:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>603943362000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1914-07-30T06:40:53</OtherDateUT>
+    <OtherDateUT_Ticks>603865392530000000</OtherDateUT_Ticks>
+    <BirthPlace>New York ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>38</ID>
+    <DisplayName>John Travolta</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1954-02-18T14:53:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>616348759800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1954-02-18T19:53:00</BirthDateUT>
+    <BirthDateUT_Ticks>616348939800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1953-11-24T05:13:43</OtherDateUT>
+    <OtherDateUT_Ticks>616274108230000000</OtherDateUT_Ticks>
+    <BirthPlace>Englewood ,  New Jersey</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>37</ID>
+    <DisplayName>John Nash</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1928-06-13T07:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>608243292000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1928-06-13T12:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>608243472000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1928-03-15T00:43:56</OtherDateUT>
+    <OtherDateUT_Ticks>608165306360000000</OtherDateUT_Ticks>
+    <BirthPlace>Bluefield ,  West Virginia</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>36</ID>
+    <DisplayName>Johnny Depp</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1963-06-09T08:44:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>619284410400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1963-06-09T14:44:00</BirthDateUT>
+    <BirthDateUT_Ticks>619284626400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1963-03-11T08:28:27</OtherDateUT>
+    <OtherDateUT_Ticks>619206641070000000</OtherDateUT_Ticks>
+    <BirthPlace>Owensboro ,  Kentucky</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>35</ID>
+    <DisplayName>John Kerry</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1943-12-11T08:03:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613132705800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1943-12-11T12:03:00</BirthDateUT>
+    <BirthDateUT_Ticks>613132849800000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647353686972</OtherDateUT_Ticks>
+    <BirthPlace>Boston, Massachusetts</BirthPlace>
+    <TimeZone>EWT (UT - 04:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>34</ID>
+    <DisplayName>John Kennedy</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1917-05-29T15:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>604759068000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1917-05-29T15:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>604759068000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647353530710</OtherDateUT_Ticks>
+    <BirthPlace>Brookline,Massachusetts</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>33</ID>
+    <DisplayName>Jane Fonda</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1937-12-21T09:14:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>611248364400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1937-12-21T14:14:00</BirthDateUT>
+    <BirthDateUT_Ticks>611248544400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1937-09-24T19:27:22</OtherDateUT>
+    <OtherDateUT_Ticks>611172700420000000</OtherDateUT_Ticks>
+    <BirthPlace>New York ,  New York</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>32</ID>
+    <DisplayName>H.G. Wells</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1866-09-21T16:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>588764754000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1866-09-21T16:29:52</BirthDateUT>
+    <BirthDateUT_Ticks>588764753920000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647353061924</OtherDateUT_Ticks>
+    <BirthPlace>Bromley,United Kingdom</BirthPlace>
+    <TimeZone>UT  (UT + 00:00:08)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>31</ID>
+    <DisplayName>Hillary Clinton</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1947-10-26T08:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>614355264000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1947-10-26T14:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>614355480000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1947-07-28T05:27:53</OtherDateUT>
+    <OtherDateUT_Ticks>614277412730000000</OtherDateUT_Ticks>
+    <BirthPlace>Chicago ,  Illinois</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>30</ID>
+    <DisplayName>Henry Miller</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1891-12-26T12:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>596736738000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1891-12-26T12:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>596736738000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647352593138</OtherDateUT_Ticks>
+    <BirthPlace>Brooklyn,New York</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>29</ID>
+    <DisplayName>Henri Matisse</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1869-12-31T20:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>589799088000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1869-12-31T19:45:48</BirthDateUT>
+    <BirthDateUT_Ticks>589799079480000000</BirthDateUT_Ticks>
+    <OtherDateUT>1869-10-05T11:24:50</OtherDateUT>
+    <OtherDateUT_Ticks>589723610900000000</OtherDateUT_Ticks>
+    <BirthPlace>Le Cateau , France</BirthPlace>
+    <TimeZone>LMT (UT - 0:14)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>28</ID>
+    <DisplayName>Halle Berry</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1966-08-14T23:59:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>620288927400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1966-08-15T03:59:00</BirthDateUT>
+    <BirthDateUT_Ticks>620289071400000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647352280614</OtherDateUT_Ticks>
+    <BirthPlace>Cleveland, Ohio</BirthPlace>
+    <TimeZone>EDT (UT - 04:00:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>27</ID>
+    <DisplayName>Gwyneth Paltrow</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1972-09-27T17:25:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622220595000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1972-09-28T00:25:00</BirthDateUT>
+    <BirthDateUT_Ticks>622220847000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1972-06-28T14:42:38</OtherDateUT>
+    <OtherDateUT_Ticks>622141873580000000</OtherDateUT_Ticks>
+    <BirthPlace>Los Angeles ,  California</BirthPlace>
+    <TimeZone>PDT (UT + 7:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>26</ID>
+    <DisplayName>George Lucas</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1944-05-14T05:40:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613266540000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1944-05-14T12:40:00</BirthDateUT>
+    <BirthDateUT_Ticks>613266792000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1944-02-15T09:09:26</OtherDateUT>
+    <OtherDateUT_Ticks>613189769660000000</OtherDateUT_Ticks>
+    <BirthPlace>Modesto ,  California</BirthPlace>
+    <TimeZone>PWT (UT + 7:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>25</ID>
+    <DisplayName>George Clooney</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1961-05-06T02:58:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>618624106800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1961-05-06T07:58:00</BirthDateUT>
+    <BirthDateUT_Ticks>618624286800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1961-02-06T13:44:31</OtherDateUT>
+    <OtherDateUT_Ticks>618547598710000000</OtherDateUT_Ticks>
+    <BirthPlace>Lexington ,  Kentucky</BirthPlace>
+    <TimeZone>EST (UT + 5:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>24</ID>
+    <DisplayName>George Gurdjieff</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1877-01-13T00:39:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>592018871400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1877-01-12T22:09:00</BirthDateUT>
+    <BirthDateUT_Ticks>592018781400000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647351343042</OtherDateUT_Ticks>
+    <BirthPlace>Aleksandrov,Russia</BirthPlace>
+    <TimeZone>LMT (UT + 02:30)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>23</ID>
+    <DisplayName>Gennifer Flowers</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1950-01-24T23:45:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>615065175000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1950-01-24T23:45:00</BirthDateUT>
+    <BirthDateUT_Ticks>615065175000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647351186780</OtherDateUT_Ticks>
+    <BirthPlace>Dresden,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>22</ID>
+    <DisplayName>Frida Kahlo</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1907-07-06T15:07:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>601635712200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1907-07-06T15:07:00</BirthDateUT>
+    <BirthDateUT_Ticks>601635712200000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647350874256</OtherDateUT_Ticks>
+    <BirthPlace>Sedona,Arizona</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>21</ID>
+    <DisplayName>Elvis Presley</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1935-01-08T04:34:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>610316804400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1935-01-08T10:34:00</BirthDateUT>
+    <BirthDateUT_Ticks>610317020400000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647350405470</OtherDateUT_Ticks>
+    <BirthPlace>Tupelo, Mississippi</BirthPlace>
+    <TimeZone>CST (UT - 06:00)</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>20</ID>
+    <DisplayName>Edgar Cayce</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1877-03-18T15:03:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>592074685800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1877-03-18T15:03:00</BirthDateUT>
+    <BirthDateUT_Ticks>592074685800000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:35</OtherDateUT>
+    <OtherDateUT_Ticks>634816647350249208</OtherDateUT_Ticks>
+    <BirthPlace>Hopkinsville,Kentucky</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>19</ID>
+    <DisplayName>Drew Barrymore</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1975-02-22T11:51:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622978986600000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1975-02-22T19:51:00</BirthDateUT>
+    <BirthDateUT_Ticks>622979274600000000</BirthDateUT_Ticks>
+    <OtherDateUT>1974-11-28T04:49:29</OtherDateUT>
+    <OtherDateUT_Ticks>622904429690000000</OtherDateUT_Ticks>
+    <BirthPlace>Culver City ,  California</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>18</ID>
+    <DisplayName>Diana Princess of Wales</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1961-07-01T18:45:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>618673059000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1961-07-01T18:45:00</BirthDateUT>
+    <BirthDateUT_Ticks>618673059000000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:34</OtherDateUT>
+    <OtherDateUT_Ticks>634816647349624160</OtherDateUT_Ticks>
+    <BirthPlace>Sedona,Arizona</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>17</ID>
+    <DisplayName>Christopher Reeve</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1952-09-25T03:12:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>615906835200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1952-09-25T07:12:00</BirthDateUT>
+    <BirthDateUT_Ticks>615906979200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1952-06-25T19:44:39</OtherDateUT>
+    <OtherDateUT_Ticks>615827942790000000</OtherDateUT_Ticks>
+    <BirthPlace>New York ,  New York</BirthPlace>
+    <TimeZone>EDT (UT + 4:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>16</ID>
+    <DisplayName>Chelsea Clinton</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1980-02-28T05:24:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>624561602400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1980-02-28T05:24:00</BirthDateUT>
+    <BirthDateUT_Ticks>624561602400000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:34</OtherDateUT>
+    <OtherDateUT_Ticks>634816647348999112</OtherDateUT_Ticks>
+    <BirthPlace>Dresden,Germany</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>15</ID>
+    <DisplayName>Catherine Zeta-Jones</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1969-09-25T14:40:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>621271824000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1969-09-25T13:40:00</BirthDateUT>
+    <BirthDateUT_Ticks>621271788000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1969-06-26T02:18:26</OtherDateUT>
+    <OtherDateUT_Ticks>621192755060000000</OtherDateUT_Ticks>
+    <BirthPlace>Swansea , United Kingdom</BirthPlace>
+    <TimeZone>CET (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>14</ID>
+    <DisplayName>Catherine Deneuve</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1943-10-22T13:35:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613089705000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1943-10-22T12:35:00</BirthDateUT>
+    <BirthDateUT_Ticks>613089669000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1943-07-23T23:57:34</OtherDateUT>
+    <OtherDateUT_Ticks>613011454540000000</OtherDateUT_Ticks>
+    <BirthPlace>Paris , France</BirthPlace>
+    <TimeZone>BST (UT - 1:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>13</ID>
+    <DisplayName>Carl Gustav Jung</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1875-07-26T19:19:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>591555575400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1875-07-26T19:19:00</BirthDateUT>
+    <BirthDateUT_Ticks>591555575400000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:34</OtherDateUT>
+    <OtherDateUT_Ticks>634816647348374064</OtherDateUT_Ticks>
+    <BirthPlace>Abenójar,Spain</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+  <Chart>
+    <ID>12</ID>
+    <DisplayName>Britney Spears</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1981-12-02T01:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>625117014000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1981-12-02T07:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>625117230000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1981-09-04T16:27:00</OtherDateUT>
+    <OtherDateUT_Ticks>625040656200000000</OtherDateUT_Ticks>
+    <BirthPlace>McComb ,  Mississippi</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>11</ID>
+    <DisplayName>Bob Dylan</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1941-05-24T21:05:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>612328791000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1941-05-25T03:05:00</BirthDateUT>
+    <BirthDateUT_Ticks>612329007000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1941-02-24T12:18:19</OtherDateUT>
+    <OtherDateUT_Ticks>612251578990000000</OtherDateUT_Ticks>
+    <BirthPlace>Duluth ,  Minnesota</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>10</ID>
+    <DisplayName>Bill Gates</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1955-10-28T22:00:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>616882104000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1955-10-29T06:00:00</BirthDateUT>
+    <BirthDateUT_Ticks>616882392000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1955-07-31T00:13:05</OtherDateUT>
+    <OtherDateUT_Ticks>616804423850000000</OtherDateUT_Ticks>
+    <BirthPlace>Seattle ,  Washington</BirthPlace>
+    <TimeZone>PST (UT + 8:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>9</ID>
+    <DisplayName>Bill Clinton</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1946-08-19T08:51:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>613981182600000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1946-08-19T14:51:00</BirthDateUT>
+    <BirthDateUT_Ticks>613981398600000000</BirthDateUT_Ticks>
+    <OtherDateUT>1946-05-19T14:42:43</OtherDateUT>
+    <OtherDateUT_Ticks>613901905630000000</OtherDateUT_Ticks>
+    <BirthPlace>Hope ,  Arkansas</BirthPlace>
+    <TimeZone>CST (UT + 6:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>8</ID>
+    <DisplayName>Ben Affleck</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1972-08-15T02:52:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>622182919200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1972-08-15T09:52:00</BirthDateUT>
+    <BirthDateUT_Ticks>622183171200000000</BirthDateUT_Ticks>
+    <OtherDateUT>1972-05-15T09:48:08</OtherDateUT>
+    <OtherDateUT_Ticks>622103680880000000</OtherDateUT_Ticks>
+    <BirthPlace>Berkeley ,  California</BirthPlace>
+    <TimeZone>PDT (UT + 7:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>7</ID>
+    <DisplayName>Barbra Streisand</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1942-04-24T05:08:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>612617656800000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1942-04-24T09:08:00</BirthDateUT>
+    <BirthDateUT_Ticks>612617800800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1942-01-26T03:26:24</OtherDateUT>
+    <OtherDateUT_Ticks>612541563840000000</OtherDateUT_Ticks>
+    <BirthPlace>Brooklyn ,  New York</BirthPlace>
+    <TimeZone>EWT (UT + 4:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>6</ID>
+    <DisplayName>Ariel Sharon</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1928-02-27T07:30:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>608150862000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1928-02-27T05:30:00</BirthDateUT>
+    <BirthDateUT_Ticks>608150790000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1927-12-02T13:45:59</OtherDateUT>
+    <OtherDateUT_Ticks>608075919590000000</OtherDateUT_Ticks>
+    <BirthPlace>Tel Aviv , Israel</BirthPlace>
+    <TimeZone>EET (UT - 2:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>5</ID>
+    <DisplayName>Anthony Hopkins</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1937-12-31T09:15:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>611257005000000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1937-12-31T09:15:00</BirthDateUT>
+    <BirthDateUT_Ticks>611257005000000000</BirthDateUT_Ticks>
+    <OtherDateUT>1937-10-04T23:06:20</OtherDateUT>
+    <OtherDateUT_Ticks>611181471800000000</OtherDateUT_Ticks>
+    <BirthPlace>Port Talbot , United Kingdom</BirthPlace>
+    <TimeZone>UT</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>4</ID>
+    <DisplayName>Annie Besant</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1847-10-01T17:19:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>582777263400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1847-10-01T17:19:40</BirthDateUT>
+    <BirthDateUT_Ticks>582777263800000000</BirthDateUT_Ticks>
+    <OtherDateUT>1847-07-02T11:26:36</OtherDateUT>
+    <OtherDateUT_Ticks>582698427960000000</OtherDateUT_Ticks>
+    <BirthPlace>London ,  United Kingdom</BirthPlace>
+    <TimeZone>LMT (UT + 0:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>3</ID>
+    <DisplayName>Angelina Jolie</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1975-06-04T09:09:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>623067017400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1975-06-04T16:09:00</BirthDateUT>
+    <BirthDateUT_Ticks>623067269400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1975-03-06T15:12:42</OtherDateUT>
+    <OtherDateUT_Ticks>622989475620000000</OtherDateUT_Ticks>
+    <BirthPlace>Los Angeles ,  California</BirthPlace>
+    <TimeZone>PDT (UT + 7:00)</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>2</ID>
+    <DisplayName>Alan Leo</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1860-08-07T05:49:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>586832465400000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1860-08-07T05:49:00</BirthDateUT>
+    <BirthDateUT_Ticks>586832465400000000</BirthDateUT_Ticks>
+    <OtherDateUT>1860-05-07T06:26:00</OtherDateUT>
+    <OtherDateUT_Ticks>586752999600000000</OtherDateUT_Ticks>
+    <BirthPlace>London ,  United Kingdom</BirthPlace>
+    <TimeZone>UT</TimeZone>
+    <DocumentAttributes>
+      <DocumentAttribute AttKey="JobPosition" AttValue="" />
+      <DocumentAttribute AttKey="IsLocalTimeInGmt" AttValue="False" />
+    </DocumentAttributes>
+  </Chart>
+  <Chart>
+    <ID>1</ID>
+    <DisplayName>Al Gore</DisplayName>
+    <ChartType>RaveChart</ChartType>
+    <BirthDateLocal>1948-03-31T12:52:00</BirthDateLocal>
+    <BirthDateLocal_Ticks>614491087200000000</BirthDateLocal_Ticks>
+    <BirthDateUT>1948-03-31T12:52:00</BirthDateUT>
+    <BirthDateUT_Ticks>614491087200000000</BirthDateUT_Ticks>
+    <OtherDateUT>2012-08-27T11:45:34</OtherDateUT>
+    <OtherDateUT_Ticks>634816647344467514</OtherDateUT_Ticks>
+    <BirthPlace>Washington,Dist of Columbia</BirthPlace>
+    <TimeZone>UT</TimeZone>
+  </Chart>
+</Charts>

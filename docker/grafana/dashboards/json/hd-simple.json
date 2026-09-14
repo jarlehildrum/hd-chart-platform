@@ -1,0 +1,203 @@
+{
+  "dashboard": {
+    "annotations": {
+      "list": []
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": null,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "testdata",
+          "uid": "PD8C576611E62080A"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "vis": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "testdata",
+              "uid": "PD8C576611E62080A"
+            },
+            "refId": "A",
+            "scenarioId": "random_walk"
+          }
+        ],
+        "title": "HD Platform Analytics - Sample Data",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "testdata",
+          "uid": "PD8C576611E62080A"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "values": false,
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": ""
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "10.2.0",
+        "targets": [
+          {
+            "datasource": {
+              "type": "testdata",
+              "uid": "PD8C576611E62080A"
+            },
+            "refId": "A",
+            "scenarioId": "random_walk",
+            "seriesCount": 1
+          }
+        ],
+        "title": "HD Platform Status",
+        "type": "gauge"
+      }
+    ],
+    "refresh": "5s",
+    "schemaVersion": 38,
+    "style": "dark",
+    "tags": [
+      "hd-platform"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "HD Platform Dashboard",
+    "uid": "hd_simple_dashboard",
+    "version": 0
+  },
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "canDelete": true,
+    "slug": "hd-platform-dashboard",
+    "url": "/d/hd_simple_dashboard/hd-platform-dashboard",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "2026-03-03T20:00:00Z",
+    "updated": "2026-03-03T20:00:00Z",
+    "updatedBy": "admin",
+    "createdBy": "admin",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderUid": "",
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": true,
+    "provisionedExternalId": "hd_simple_dashboard"
+  }
+}

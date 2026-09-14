@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>HdPlatform</RootNamespace>
+    <AssemblyName>HdPlatform</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    <!-- Payment & Database -->
+    <PackageReference Include="Stripe.net" Version="47.7.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10" />
+    <!-- HD Chart API dependencies -->
+    <PackageReference Include="GeoTimeZone" Version="5.3.0" />
+    <PackageReference Include="SharpAstrology.HumanDesign" Version="1.1.0" />
+    <PackageReference Include="SharpAstrology.HumanDesign.BlazorComponents" Version="0.2.1" />
+    <PackageReference Include="SharpAstrology.SwissEph" Version="0.2.2" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+    <PackageReference Include="Svg.Skia" Version="2.0.0.4" />
+  </ItemGroup>
+
+</Project>

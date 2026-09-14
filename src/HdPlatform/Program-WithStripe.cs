@@ -7,23 +7,19 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Database
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
     Environment.GetEnvironmentVariable("DATABASE_URL") ??
-    "Host=postgres;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123";
+    "Host=localhost;Port=5432;Database=hdplatform;Username=hduser;Password=hdplatform123";
 
 builder.Services.AddDbContext<HdPlatformContext>(options =>
     options.UseNpgsql(connectionString));
 
-// HTTP Client for external services
-builder.Services.AddHttpClient();
-
-// Core Services
+// Core Services - now using database instead of JSON
 builder.Services.AddScoped<DatabaseApiKeyService>();
 builder.Services.AddScoped<StripeService>();
-builder.Services.AddScoped<HumanDesignService>();
+builder.Services.AddSingleton<HumanDesignService>();
 builder.Services.AddSingleton<GeocodingService>();
-builder.Services.AddScoped<ChartImageService>();
-builder.Services.AddSingleton<LlmService>();
+builder.Services.AddSingleton<ChartImageService>();
 
 // CORS
 builder.Services.AddCors(options =>
@@ -39,8 +35,8 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Human Design Chart API",
-        Version = "v2.0",
-        Description = "Professional Human Design chart calculations with PostgreSQL + Stripe billing. Built by a certified BG5 consultant.",
+        Version = "v1",
+        Description = "Professional Human Design chart calculations with Stripe billing. Built by a certified BG5 consultant.",
         Contact = new OpenApiContact { Name = "HD Chart API", Email = "hello@hdchartapi.com" }
     });
     c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
@@ -69,7 +65,7 @@ using (var scope = app.Services.CreateScope())
     }
     catch (Exception ex)
     {
-        app.Logger.LogError(ex, "Database migration failed - continuing with manual tables");
+        app.Logger.LogError(ex, "Database migration failed");
     }
 }
 
@@ -78,7 +74,7 @@ app.UseCors();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HD Chart API v2.0");
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "HD Chart API v1");
     c.RoutePrefix = "docs";
 });
 app.UseMiddleware<DatabaseApiKeyMiddleware>();
@@ -95,17 +91,16 @@ app.MapGet("/api", () => Results.Ok(new
 {
     name = "Human Design Chart API",
     version = "v2.0",
-    description = "Professional HD chart calculations with PostgreSQL + Stripe billing",
+    description = "Professional HD chart calculations with Stripe billing",
     docs = "/docs",
     status = "operational",
     built_by = "Certified BG5 consultant",
-    database = "postgresql",
-    billing = "stripe"
+    billing_enabled = true
 })).WithTags("Info").WithDescription("API information and status");
 
-app.MapGet("/api/health", () => Results.Ok(new
-{
-    status = "healthy",
+app.MapGet("/api/health", () => Results.Ok(new 
+{ 
+    status = "healthy", 
     timestamp = DateTime.UtcNow,
     uptime = Environment.TickCount64 / 1000.0,
     database = "postgresql",
@@ -130,7 +125,7 @@ app.MapPost("/api/checkout", async (CheckoutRequest request, StripeService strip
     }
 })
 .WithTags("Billing")
-.WithDescription("Create Stripe checkout session for Pro ($29) or Business ($99) plan")
+.WithDescription("Create Stripe checkout session for Pro or Business plan")
 .Accepts<CheckoutRequest>("application/json")
 .Produces<CheckoutResponse>(200)
 .ProducesProblem(400);
@@ -178,18 +173,15 @@ app.MapPost("/api/webhooks/stripe", async (HttpContext context, StripeService st
 // CHART ENDPOINTS (Require API Key)
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/chart", async (HdPlatform.Models.ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
+app.MapPost("/api/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
     try
     {
         var birthDate = DateTime.Parse(request.BirthDate);
-        var chartJson = await hd.GenerateChartAsync(birthDate, request.BirthPlace);
-
-        if (chartJson == null)
-            return Results.Problem("Failed to generate chart from HD Chart API");
-
-        var chart = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chartJson);
-        return Results.Ok(new { chart });
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var result = hd.CalculateChart(utcBirth);
+        return Results.Ok(new { chart = result, location = new { geoResult.Lat, geoResult.Lng, geoResult.TimeZoneId }, utcBirthDate = utcBirth.ToString("o") });
     }
     catch (Exception ex)
     {
@@ -199,24 +191,19 @@ app.MapPost("/api/chart", async (HdPlatform.Models.ChartRequest request, HumanDe
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart with automatic geocoding and timezone conversion")
-.Accepts<HdPlatform.Models.ChartRequest>("application/json")
+.Accepts<ChartRequest>("application/json")
 .Produces(200)
 .ProducesProblem(400)
 .ProducesProblem(401)
 .ProducesProblem(429);
 
-app.MapPost("/api/chart/utc", async (HdPlatform.Models.ChartRequest request, HumanDesignService hd) =>
+app.MapPost("/api/chart/utc", (ChartRequest request, HumanDesignService hd) =>
 {
     try
     {
         var utcDate = DateTime.SpecifyKind(DateTime.Parse(request.BirthDate), DateTimeKind.Utc);
-        var chartJson = await hd.GenerateChartAsync(utcDate, request.BirthPlace);
-
-        if (chartJson == null)
-            return Results.Problem("Failed to generate chart from HD Chart API");
-
-        var chart = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chartJson);
-        return Results.Ok(chart);
+        var result = hd.CalculateChart(utcDate);
+        return Results.Ok(result);
     }
     catch (Exception ex)
     {
@@ -226,22 +213,20 @@ app.MapPost("/api/chart/utc", async (HdPlatform.Models.ChartRequest request, Hum
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart from UTC birth time (no geocoding needed)")
-.Accepts<HdPlatform.Models.ChartRequest>("application/json")
+.Accepts<ChartRequest>("application/json")
 .Produces(200);
 
-app.MapPost("/api/chart/transit", async (HdPlatform.Models.TransitRequest request, HumanDesignService hd, GeocodingService geo) =>
+app.MapPost("/api/chart/transit", async (TransitRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
     try
     {
         var birthDate = DateTime.Parse(request.BirthDate);
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
         var transitDate = DateTime.Parse(request.TransitDate);
-        var chartJson = await hd.GenerateTransitAsync(birthDate, request.BirthPlace, transitDate);
-
-        if (chartJson == null)
-            return Results.Problem("Failed to generate transit chart from HD Chart API");
-
-        var chart = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chartJson);
-        return Results.Ok(chart);
+        var utcTransit = transitDate.Kind == DateTimeKind.Utc ? transitDate : geo.ConvertToUtc(transitDate, geoResult.TimeZone);
+        var result = hd.CalculateTransit(utcBirth, utcTransit);
+        return Results.Ok(result);
     }
     catch (Exception ex)
     {
@@ -251,7 +236,7 @@ app.MapPost("/api/chart/transit", async (HdPlatform.Models.TransitRequest reques
 })
 .WithTags("Charts")
 .WithDescription("Calculate natal chart with transit overlay for specific date")
-.Accepts<HdPlatform.Models.TransitRequest>("application/json")
+.Accepts<TransitRequest>("application/json")
 .Produces(200);
 
 app.MapPost("/api/chart/composite", async (CompositeRequest request, HumanDesignService hd, GeocodingService geo) =>
@@ -259,17 +244,15 @@ app.MapPost("/api/chart/composite", async (CompositeRequest request, HumanDesign
     try
     {
         var date1 = DateTime.Parse(request.BirthDate1);
+        var geo1 = await geo.GeocodeAsync(request.BirthPlace1);
+        var utc1 = geo.ConvertToUtc(date1, geo1.TimeZone);
+        
         var date2 = DateTime.Parse(request.BirthDate2);
-        var chart1Json = await hd.GenerateChartAsync(date1, request.BirthPlace1);
-        var chart2Json = await hd.GenerateChartAsync(date2, request.BirthPlace2);
-
-        if (chart1Json == null || chart2Json == null)
-            return Results.Problem("Failed to generate composite charts from HD Chart API");
-
-        var chart1 = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chart1Json);
-        var chart2 = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chart2Json);
-
-        return Results.Ok(new { person1 = chart1, person2 = chart2 });
+        var geo2 = await geo.GeocodeAsync(request.BirthPlace2);
+        var utc2 = geo.ConvertToUtc(date2, geo2.TimeZone);
+        
+        var result = hd.CalculateComposite(utc1, utc2);
+        return Results.Ok(result);
     }
     catch (Exception ex)
     {
@@ -282,16 +265,27 @@ app.MapPost("/api/chart/composite", async (CompositeRequest request, HumanDesign
 .Accepts<CompositeRequest>("application/json")
 .Produces(200);
 
-app.MapPost("/api/chart/image", async (ImageRequest request, ChartImageService img, GeocodingService geo) =>
+app.MapPost("/api/chart/image", async (ImageRequest request, HumanDesignService hd, GeocodingService geo, ChartImageService img) =>
 {
     try
     {
         var birthDate = DateTime.Parse(request.BirthDate);
-        var png = await img.GenerateChartImageAsync(birthDate, request.BirthPlace);
-
-        if (png == null)
-            return Results.Problem("Failed to generate chart image from HD Chart API");
-
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var chart = hd.GetRawChart(utcBirth);
+        
+        byte[] png;
+        if (!string.IsNullOrEmpty(request.TransitDate))
+        {
+            var transitDate = DateTime.Parse(request.TransitDate);
+            var utcTransit = geo.ConvertToUtc(transitDate, geoResult.TimeZone);
+            var transit = hd.GetRawTransit(utcBirth, utcTransit);
+            png = img.GenerateBodygraphPng(chart, transit);
+        }
+        else
+        {
+            png = img.GenerateBodygraphPng(chart);
+        }
         return Results.File(png, "image/png", "bodygraph.png");
     }
     catch (Exception ex)
@@ -305,51 +299,19 @@ app.MapPost("/api/chart/image", async (ImageRequest request, ChartImageService i
 .Accepts<ImageRequest>("application/json")
 .Produces(200, contentType: "image/png");
 
-app.MapPost("/api/chart/reading", async (ReadingRequest request, HumanDesignService hd, GeocodingService geo, LlmService llm) =>
-{
-    try
-    {
-        var birthDate = DateTime.Parse(request.BirthDate);
-        var chartJson = await hd.GenerateChartAsync(birthDate, request.BirthPlace);
-
-        if (chartJson == null)
-            return Results.Problem("Failed to generate chart from HD Chart API");
-
-        var reading = await llm.GenerateReadingAsync(chartJson, request.ReadingType ?? "general");
-        var chart = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chartJson);
-
-        return Results.Ok(new { chart, reading, readingType = request.ReadingType ?? "general" });
-    }
-    catch (Exception ex)
-    {
-        app.Logger.LogError(ex, "Error generating reading");
-        return Results.Problem(ex.Message);
-    }
-})
-.WithTags("Charts")
-.WithDescription("Calculate natal chart with AI-generated reading (general/career/relationship/health)")
-.Accepts<ReadingRequest>("application/json")
-.Produces(200)
-.ProducesProblem(400)
-.ProducesProblem(401)
-.ProducesProblem(429);
-
 // ═══════════════════════════════════════════════════════════════════════════════════════
 // DEMO ENDPOINTS (No Authentication)
 // ═══════════════════════════════════════════════════════════════════════════════════════
 
-app.MapPost("/api/demo/chart", async (HdPlatform.Models.ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
+app.MapPost("/api/demo/chart", async (ChartRequest request, HumanDesignService hd, GeocodingService geo) =>
 {
     try
     {
         var birthDate = DateTime.Parse(request.BirthDate);
-        var chartJson = await hd.GenerateChartAsync(birthDate, request.BirthPlace);
-
-        if (chartJson == null)
-            return Results.Problem("Failed to generate chart from HD Chart API");
-
-        var chart = System.Text.Json.JsonSerializer.Deserialize<System.Text.Json.JsonElement>(chartJson);
-        return Results.Ok(new { chart });
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var result = hd.CalculateChart(utcBirth);
+        return Results.Ok(new { chart = result, location = new { geoResult.Lat, geoResult.Lng, geoResult.TimeZoneId } });
     }
     catch (Exception ex)
     {
@@ -358,16 +320,15 @@ app.MapPost("/api/demo/chart", async (HdPlatform.Models.ChartRequest request, Hu
     }
 }).WithTags("Demo").WithDescription("Demo chart calculation - no API key required").ExcludeFromDescription();
 
-app.MapPost("/api/demo/image", async (ImageRequest request, ChartImageService img, GeocodingService geo) =>
+app.MapPost("/api/demo/image", async (ImageRequest request, HumanDesignService hd, GeocodingService geo, ChartImageService img) =>
 {
     try
     {
         var birthDate = DateTime.Parse(request.BirthDate);
-        var png = await img.GenerateChartImageAsync(birthDate, request.BirthPlace);
-
-        if (png == null)
-            return Results.Problem("Failed to generate chart image from HD Chart API");
-
+        var geoResult = await geo.GeocodeAsync(request.BirthPlace);
+        var utcBirth = geo.ConvertToUtc(birthDate, geoResult.TimeZone);
+        var chart = hd.GetRawChart(utcBirth);
+        var png = img.GenerateBodygraphPng(chart);
         return Results.File(png, "image/png", "bodygraph-demo.png");
     }
     catch (Exception ex)
@@ -385,13 +346,13 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
 {
     var name = ctx.Request.Query["name"].FirstOrDefault() ?? "";
     var email = ctx.Request.Query["email"].FirstOrDefault() ?? "";
-
+    
     if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
         return Results.BadRequest(new { error = "Name and email are required" });
-
+        
     if (!IsValidEmail(email))
         return Results.BadRequest(new { error = "Invalid email format" });
-
+    
     try
     {
         var apiKey = await keyService.CreateKeyAsync(name, email, "free");
@@ -403,8 +364,7 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
             tier = apiKey.Tier,
             monthlyLimit = apiKey.MonthlyLimit,
             createdAt = apiKey.CreatedAt,
-            active = apiKey.Active,
-            message = "API key created successfully! Upgrade to Pro ($29) or Business ($99) via /api/checkout"
+            active = apiKey.Active
         });
     }
     catch (Exception ex)
@@ -414,7 +374,7 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
     }
 })
 .WithTags("Signup")
-.WithDescription("Get a free API key stored in PostgreSQL - upgrade via Stripe billing")
+.WithDescription("Get a free API key - no credit card required")
 .ExcludeFromDescription();
 
 // ═══════════════════════════════════════════════════════════════════════════════════════
@@ -424,11 +384,11 @@ app.MapPost("/api/signup", async (HttpContext ctx, DatabaseApiKeyService keyServ
 app.MapPost("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-
+    
     var name = ctx.Request.Query["name"].FirstOrDefault() ?? "unnamed";
     var email = ctx.Request.Query["email"].FirstOrDefault() ?? "";
     var tier = ctx.Request.Query["tier"].FirstOrDefault() ?? "free";
-
+    
     try
     {
         var apiKey = await keyService.CreateKeyAsync(name, email, tier);
@@ -446,7 +406,7 @@ app.MapPost("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService key
 app.MapGet("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-
+    
     try
     {
         var keys = await keyService.ListKeysAsync();
@@ -464,7 +424,7 @@ app.MapGet("/api/admin/keys", async (HttpContext ctx, DatabaseApiKeyService keyS
 app.MapGet("/api/admin/usage/{apiKey}", async (string apiKey, HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-
+    
     try
     {
         var usage = await keyService.GetUsageAsync(apiKey);
@@ -482,7 +442,7 @@ app.MapGet("/api/admin/usage/{apiKey}", async (string apiKey, HttpContext ctx, D
 app.MapGet("/api/admin/analytics", async (HttpContext ctx, DatabaseApiKeyService keyService) =>
 {
     if (!IsAuthorizedAdmin(ctx, adminSecret)) return Results.Unauthorized();
-
+    
     try
     {
         var analytics = await keyService.GetAnalyticsAsync();
@@ -495,7 +455,7 @@ app.MapGet("/api/admin/analytics", async (HttpContext ctx, DatabaseApiKeyService
     }
 })
 .WithTags("Admin")
-.WithDescription("Get platform analytics and metrics from PostgreSQL")
+.WithDescription("Get platform analytics and metrics")
 .ExcludeFromDescription();
 
 app.Run();
